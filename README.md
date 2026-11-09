@@ -1,2 +1,153 @@
-# taiwan-grant-watch
-Taiwan Government Grant Announcement Tracker
+# 台灣政府企業補助公告自動追蹤系統
+
+Python 3.12／SQLite 的第一階段實作。提供候選來源管理、RSS／Atom、HTML、JSON 擷取器、標準化、去重更新、失敗紀錄、CSV／Excel 匯出及 pytest 測試。
+
+**最新驗證（2026-11-09）：2 個官方來源成功，共 31 筆來源公告。** 中小及新創企業署業務消息 3 筆、經濟部訊息公告 RSS 28 筆，均 HTTP 200；各來源第二次實際擷取新增 0 筆。CSV／Excel 已讀回核對真實官方網址。詳見 [最新驗證報告](docs/official-source-validation-2026-11-09.md)；先前代理 403 紀錄保留於 [歷史驗證紀錄](docs/source-validation.md)。
+
+尚未開發 Gradio、AI 摘要、Email 或 GitHub Actions 排程；之後可每天呼叫 CLI，這次沒有設定排程。既有雲端 install_script、start_skill 與網路設定保留不變。`.gitignore` 排除虛擬環境、資料庫、匯出檔、憑證及暫存產物。
+
+## 使用已驗證的官方來源
+
+沿用現有程式與原 50 項測試；可用來源另列於 `data/active-sources.json`，原候選清單保持不變。正式資料庫在 `var/grants.sqlite3`，匯出在 `var/announcements.csv` 與 `var/announcements.xlsx`。
+
+```bash
+.venv/bin/python -m grant_watch --sources data/active-sources.json fetch --source sme-business --source moea-notices-rss
+.venv/bin/python -m grant_watch --sources data/active-sources.json sources
+.venv/bin/python -m grant_watch --sources data/active-sources.json export var/announcements.csv
+.venv/bin/python -m grant_watch --sources data/active-sources.json export var/announcements.xlsx
+# 完整重跑：兩次網路擷取、隔離內容更新與匯出比對
+.venv/bin/python -m scripts.verify_official_sources
+```
+
+官方資料授權要求註明出處；已保留來源機關與官方網址。31 筆為來源公告數，同計畫在不同網站轉載時仍可能有不同紀錄；未聲稱是 31 個不同計畫。內容更新已以真實清單與官方詳情在隔離資料庫重播驗證，不代表本次觀察到官網自然修訂。其餘候選仍待驗證。
+
+## 企業補助辨識與資料品質
+
+已逐筆核對現有 31 筆真實公告的官方詳情：**企業補助計畫 14、非補助公告 13、待人工確認 4**。非補助類本輪皆為純核定／結果通知，仍保留原始紀錄；企業補助分類也不代表目前正在受理。規則依官方內文判斷，不只看標題關鍵字。
+
+詳見 [逐筆分類、人工確認與欄位品質報告](docs/announcement-quality-report.md)。原始四表不變，另以 quality_runs／quality_documents／quality_assessments 保存版本與證據，view `latest_announcement_assessments` 提供最新結果及 is_stale。
+
+```bash
+# 重新逐筆抓官方詳情並評估現有 SQLite 公告
+.venv/bin/python -m scripts.classify_announcements
+# 重播已保存的真實快照（先驗證原始 HTML、原公告內容版本）
+.venv/bin/python -m scripts.classify_announcements --snapshot var/quality/20261109T080655Z
+```
+
+輸出 `var/quality/enterprise-grants.xlsx`（14 筆計畫）與 `var/quality/all-classifications.xlsx`（31 筆完整分類、4 筆人工確認及 10 筆計畫欄位待補）。另有完整 CSV 與 JSON 證據。分類另表保存，不回寫原始公告、刪除公告或改變既有去重更新機制。
+
+未知欄位 NULL；多對象期間／網址保存明細，不任選其一。部分補助僅明示適用範圍，未提供完整資格，會另外提示。申請網址只表示官方內文明示的連結，並未登入或送出申請。原始內容更新後需重新擷取與評估，不能用過期快照冒充新驗證。
+
+## 安裝與執行
+
+在專案根目錄執行（現有 `.venv` 可直接使用）：
+
+```bash
+python3 --version  # 需 Python 3.12
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
+python -m grant_watch sources
+```
+
+依賴的直接版本已固定；`requirements-dev.txt` 包含執行與測試依賴，尚非完整間接依賴鎖檔。可選擇 `python -m pip install -e .` 安裝套件；CLI 的資料檔相對路徑仍以目前工作目錄為準。預設資料庫為被既有 `.gitignore` 忽略的 `var/grants.sqlite3`，測試資料庫一律位於 pytest 臨時目錄。
+
+```bash
+# 現有候選尚未啟用：此命令會記錄失敗、回傳 exit 1，不會假裝成功。
+python -m grant_watch fetch --source sme --source moea
+
+# 可選擇多個來源，逐站執行；任何來源失敗時整個命令 exit 1。
+python -m grant_watch --db var/grants.sqlite3 --log-file var/fetch.log fetch --source sme
+python -m grant_watch export var/announcements.csv
+python -m grant_watch export var/announcements.xlsx
+```
+
+全域參數 `--db`、`--sources`、`--log-file` 須放在子命令前。SQLite 會自動建立資料目錄；自訂日誌的父目錄須先建立。預設日誌送至 stderr。空資料庫可匯出欄位標題，不代表取得公告。CSV 使用 UTF-8 BOM，NULL 匯出空白；Excel 保留空白儲存格，兩種格式均處理公式注入。
+
+## 來源管理及啟用流程
+
+`data/sources.json` 保留初次開發的 27 筆候選快照（本輪啟用端點及成功快照在 `data/active-sources.json`）：經濟部、中小及新創企業署、產業發展署、產業技術司、國科會與全台 22 縣市。地方政府先記錄官方入口及優先尋找的業務單位；**首頁不是已確認的公告端點，單位名稱與分工也待核對**。所有來源為 `pending`，`last_checked_at: null` 表示從未檢查，不能當成已追蹤。
+
+啟用新來源前：
+
+1. 取得環境對該官方網域的合法存取權，確認 robots.txt、網站使用規範及開放資料授權；不得繞過登入、驗證碼或反爬蟲。環境設定由使用者管理，本次未更動。
+2. 人工從官方入口尋找企業補助公告清單，優先選擇 API 或 RSS。將 `url` 改為實際端點，設定 `method`（`rss`、`html` 或 `json`）。目前只允許 `*.gov.tw`、`*.gov.taipei`；其他官方網域需另行審查後擴充程式。
+3. HTML 設定公告列與欄位 selector；JSON 設定路徑與欄位對照。確認條款後設 `terms_reviewed: true`。這是人工確認旗標，不會自動驗證網站條款。不要手動把候選 JSON 的驗證狀態改為 verified。
+4. 執行 `fetch --source ID`，檢查實際公告與擷取結果。只有成功取得至少一筆符合關鍵字、可標準化且整批寫入成功的公告，資料庫才標為 `verified`。輸入清單不會自動升級；後續執行狀態以 SQLite `sources`／`runs` 為準。可用 `sources` 指令查看。
+
+HTML 可選 `title_selector` 指定標題節點，避免連結內序號與日期混入；來源可用 `exclude_title_contains` 明列排除詞。HTML parser 設定示例（**僅為格式示例，不是任何真實網站的 selector**）：
+
+```json
+{
+  "item_selector": "article.notice",
+  "link_selector": "a.title",
+  "title_selector": ".plan-name",
+  "announced_on_selector": "time.published",
+  "deadline_selector": ".deadline",
+  "amount_selector": ".amount",
+  "eligibility_selector": ".eligibility"
+}
+```
+
+JSON parser 設定示例（同為合成格式）：
+
+```json
+{
+  "items_path": ["data", "items"],
+  "fields": {
+    "title": "name",
+    "official_url": "url",
+    "external_id": "id",
+    "announced_on": "published_date",
+    "deadline": "application_deadline"
+  }
+}
+```
+
+RSS／Atom 不需 parser 設定。所有擷取器先以標題的「補助、補貼、獎勵」作候選篩選；**尚非企業適用性判定**，可能包含非企業補助，也可能漏掉沒有這些字的計畫，需人工複核。資料只來自當次清單／feed，不自動翻頁、追附件或深入詳情；大量回溯與 PDF 解析屬後續範圍。公告機關使用所設定的發布來源機關，不推測實際承辦單位。欄位需由明確 selector／對照提供；沒有資料則 NULL，不從導覽、頁尾或全文猜測截止日及金額。
+
+## 資料與去重規則
+
+- `announcements`：UUID 公告唯一碼、名稱、機關、`government_level`（central/local）、縣市、公告日期、申請截止日、金額、資格、類別、官方網址、內文、內容雜湊、首次擷取時間、最後看見時間、內容最後更新時間、驗證狀態。金額與資格以原文儲存，不換算或推論。中央來源縣市 NULL。
+- `sources`：來源 ID、完整設定、歷史驗證狀態、最後檢查時間、最後成功時間、最近結果與錯誤。修改端點、parser、方法、機關或使用規範旗標會重設驗證狀態。
+- `source_items`：上游來源 ID／項目 ID（缺項目 ID 時改用網址）與公告 UUID 對照，支援跨來源同網址去重。
+- `runs`：逐次執行結果、筆數與錯誤。曾成功的來源後來失敗會保留歷史 verified 與 last_success_at，但 last_outcome 為 failed；**verified 不代表目前健康**。公告的驗證狀態為寫入當時快照。
+
+先比對來源項目 ID，再比對去除 fragment／utm／fbclid／gclid 並排序 query 的官方網址。只有無上游 ID、同來源、存在內文與公告日期時才用完整標準化內容雜湊合併不同網址，避免僅同名就誤合併。不同上游 ID 且不同網址的公告不因同名合併。ID 與 URL 指向不同既存公告時，整批失敗並記錄錯誤，交由人工處理。
+
+內容雜湊不含擷取時間與網址。內容未變時只更新 `last_seen_at`，內容或同一來源項目的網址改變時更新既有 UUID 及 `updated_at`；`fetched_at` 保留首次擷取時間。每來源一個原子交易，某來源失敗不阻止其他來源。相同批次重跑不新增重複公告。
+
+日期接受完整西元、三位數民國或明示「民國」年月日、ISO timestamp、RSS RFC 日期；不完整、無法辨識與不合法日期為 NULL。所有執行時間用 UTC ISO 8601，公告日期依來源文字的日期部分保存。
+
+## 請求規則與限制
+
+使用繼承的 HTTP(S) proxy 與 TLS 信任設定，不停用憑證驗證。每主機每次請求至少間隔 3 秒，並尊重 robots 的 Crawl-delay／Request-rate；先取 robots，404 視為未提供規則，其他非 200 狀態與 HTML 偽裝 robots 均保守停止。重新導向逐跳檢查，新主機重新驗證 robots。遇到反爬蟲標記即停止，不嘗試破解。
+
+單次連線／讀取 timeout 為 10／30 秒，回應上限 5 MB，最多 3 次嘗試；暫時性網路錯誤、429、5xx 有退避，尊重 Retry-After，要求等待超過 60 秒則停止留待下次執行。代理明確 403 與 TLS 錯誤不重試。限速與 robots cache 僅在單一執行程序內有效，請勿同時執行多個擷取程序；SQLite 目前亦以單一寫入程序為使用方式。
+
+## 專案結構與測試
+
+```text
+grant_watch/
+  __main__.py      CLI
+  models.py        欄位、日期與 URL 標準化
+  http.py          robots、限速、重試、大小與重新導向限制
+  extractors.py    RSS/Atom、HTML、JSON 解析器登錄
+  storage.py       SQLite schema、來源狀態、交易及去重更新
+  service.py       逐來源執行與失敗隔離
+  export.py        CSV / Excel
+ data/sources.json 候選官方入口（非成功來源）
+ docs/             真實驗證證據與限制
+ tests/fixtures/   明示合成資料，非真實公告
+```
+
+`python -m pytest -q` 的測試完全離線，禁止任何真實 requests 網路操作，涵蓋新增、重複、內容／網址更新、跨來源同 URL、保守內容雜湊合併、批次回滾、日期、解析器、來源失敗、重試、robots／TLS／重新導向／反爬蟲及兩種匯出。**離線測試通過不代表官方來源已驗證。**
+
+## 第一階段版本與 PR 驗證
+
+目前版本為 `0.1.0`，使用 Python 3.12。完整離線測試為 80 項；在專案根目錄執行 `python -m pytest -q`，並以 `python -m pip check` 檢查依賴。
+
+乾淨 checkout 不包含本機 SQLite、官方網頁快照或 Excel。請先依安裝指令安裝依賴，再使用 `data/active-sources.json` 擷取官方資料，或執行 `python -m scripts.verify_official_sources` 建立本機資料及驗證證據；官方來源與數量會隨時間改變。歷史報告中的 31 筆與 14／13／4 分類是 2026-11-09 的實測快照，不是每次重跑必定相同的結果。可重現的離線測試使用明示合成 fixture，不需外網。
+
+提交內容只包含程式、候選／啟用來源設定、測試與文字報告。`.venv/`、`var/`、SQLite 資料庫與側檔、產生的 Excel、`.env` 及其變體、私鑰與暫存檔不應提交；機密值不得寫入來源設定或範例檔。此版本不含網頁介面、排程、通知或部署設定。
