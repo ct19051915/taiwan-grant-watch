@@ -49,7 +49,7 @@ class Store:
                 if previous:
                     old = json.loads(previous['config'])
                     changed = any(old.get(k) != source.get(k) for k in
-                                  ('url', 'method', 'parser', 'agency', 'government_level', 'city', 'terms_reviewed', 'exclude_title_contains'))
+                                  ('url', 'method', 'parser', 'agency', 'government_level', 'city', 'terms_reviewed', 'exclude_title_contains', 'include_title_contains'))
                     self.db.execute('UPDATE sources SET config=? WHERE id=?', (config, source['id']))
                     if changed:
                         self.db.execute("UPDATE sources SET validation_status='pending',last_success_at=NULL,last_checked_at=NULL,last_outcome=NULL,last_error=NULL WHERE id=?", (source['id'],))

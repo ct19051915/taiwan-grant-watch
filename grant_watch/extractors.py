@@ -10,7 +10,8 @@ KEYWORDS = re.compile(r'補助|補貼|獎勵')
 
 
 def announcement(source, title, url, **fields):
-    if not title or not url or not KEYWORDS.search(title):
+    if not title or not url or not (KEYWORDS.search(title) or any(
+            term in title for term in source.get('include_title_contains', []))):
         return None
     if any(term in title for term in source.get('exclude_title_contains', [])):
         return None
@@ -75,7 +76,9 @@ class HtmlExtractor:
             title_node = row.select_one(config['title_selector']) if config.get('title_selector') else link
             if title_node is None:
                 raise FetchError('公告列缺少設定的標題節點')
-            record = announcement(source, title_node.get_text(' ', strip=True), urljoin(source['url'], link['href']), **fields)
+            title = (title_node.get(config['title_attribute']) if config.get('title_attribute')
+                     else title_node.get_text(' ', strip=True))
+            record = announcement(source, title, urljoin(source['url'], link['href']), **fields)
             if record:
                 result.append(record)
         return result
