@@ -1,0 +1,98 @@
+name: Daily grant tracking
+on:
+  workflow_dispatch:
+    inputs:
+      initialize:
+        description: '首次建立空資料庫（僅限尚無 grant-data 分支）'
+        type: boolean
+        default: false
+  # 啟用時移除下兩行註解；UTC 00:00 = 台灣 08:00
+  # schedule:
+  #   - cron: '0 0 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: grant-data-writer
+  cancel-in-progress: false
+jobs:
+  collect:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Require private repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(gh api "repos/$GITHUB_REPOSITORY" --jq .private)" = true || { echo 'Database branch requires a private repository'; exit 1; }
+      - name: Restore data branch or explicitly initialize
+        env:
+          INITIALIZE: ${{ inputs.initialize }}
+        run: |
+          set -euo pipefail
+          mkdir -p var reports
+          git ls-remote --heads origin > var/remote-heads
+          if awk '$2 == "refs/heads/grant-data" {found=1} END {exit !found}' var/remote-heads; then
+            git fetch origin grant-data
+            git worktree add data-state FETCH_HEAD
+            test -s data-state/grants.sqlite3
+            cp data-state/grants.sqlite3 var/grants.sqlite3
+          else
+            test "$INITIALIZE" = true || { echo 'Missing grant-data; explicitly initialize on first run'; exit 1; }
+            git worktree add --detach data-state
+            cd data-state
+            git checkout --orphan grant-data
+            git rm -rf .
+            git clean -fdx
+          fi
+      - name: Collect, classify and export
+        env:
+          INITIALIZE: ${{ inputs.initialize }}
+        run: |
+          args=()
+          if [ "$INITIALIZE" = true ]; then args+=(--initialize); fi
+          python -m grant_watch.daily --output reports "${args[@]}"
+      - name: Persist successful snapshot (no force push)
+        run: |
+          set -euo pipefail
+          cp var/grants.sqlite3 data-state/grants.sqlite3
+          cp reports/report.json data-state/latest-report.json
+          cd data-state
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add grants.sqlite3 latest-report.json
+          if ! git diff --cached --quiet; then git commit -m "Daily snapshot $GITHUB_RUN_ID"; fi
+          git push origin HEAD:refs/heads/grant-data
+      - name: Show report
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p reports
+          if [ ! -f reports/report.json ]; then
+            python - <<'PYREPORT'
+          import json, os
+          from pathlib import Path
+          Path('reports/report.json').write_text(json.dumps(dict(
+              status=os.environ['JOB_STATUS'], error='Setup or restore failed before collection; inspect failed step logs',
+              inserted=0, updated=0, failed_sources=[], run_id=os.environ['GITHUB_RUN_ID'])))
+          PYREPORT
+            echo 'Collection did not start. See the failed setup/restore step for the error reason and timing.' > reports/summary.md
+          fi
+          if [ -f reports/summary.md ]; then cat reports/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+          echo 'Database is saved only if the Persist successful snapshot step succeeds.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grant-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            reports/report.json
+            reports/summary.md
+            reports/*.xlsx
+          retention-days: 30
+          if-no-files-found: warn
