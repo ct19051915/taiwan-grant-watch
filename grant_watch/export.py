@@ -4,7 +4,9 @@ from openpyxl import Workbook
 
 COLUMNS = ['id', 'title', 'agency', 'government_level', 'city', 'announced_on',
            'deadline', 'amount', 'eligibility', 'category', 'official_url',
-           'fetched_at', 'updated_at', 'source_validation_status', 'last_seen_at', 'content_hash', 'content']
+           'fetched_at', 'updated_at', 'source_validation_status', 'last_seen_at', 'content_hash', 'content',
+           'application_status', 'status_as_of', 'classification_reason', 'classification_evidence',
+           'related_announcements']
 
 
 def safe_cell(value):

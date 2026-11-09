@@ -244,3 +244,4 @@ secrets*.json
 *~
 .DS_Store
 /tmp/
+/work/

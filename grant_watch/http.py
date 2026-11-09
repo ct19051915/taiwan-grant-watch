@@ -92,6 +92,8 @@ class Client:
             for _ in range(6):
                 response = self._request(robots_url)
                 if response.status_code in {301, 302, 303, 307, 308}:
+                    if not response.headers.get('Location'):
+                        raise FetchError('robots.txt 重新導向缺少 Location')
                     robots_url = official_url(urljoin(robots_url, response.headers['Location']))
                     continue
                 break
@@ -121,6 +123,8 @@ class Client:
             delay = self._policy(url)
             response = self._request(url, delay)
             if response.status_code in {301, 302, 303, 307, 308}:
+                if not response.headers.get('Location'):
+                    raise FetchError('公告頁重新導向缺少 Location')
                 url = official_url(urljoin(url, response.headers['Location']))
                 continue
             if response.status_code != 200:

@@ -151,3 +151,18 @@ grant_watch/
 乾淨 checkout 不包含本機 SQLite、官方網頁快照或 Excel。請先依安裝指令安裝依賴，再使用 `data/active-sources.json` 擷取官方資料，或執行 `python -m scripts.verify_official_sources` 建立本機資料及驗證證據；官方來源與數量會隨時間改變。歷史報告中的 31 筆與 14／13／4 分類是 2026-11-09 的實測快照，不是每次重跑必定相同的結果。可重現的離線測試使用明示合成 fixture，不需外網。
 
 提交內容只包含程式、候選／啟用來源設定、測試與文字報告。`.venv/`、`var/`、SQLite 資料庫與側檔、產生的 Excel、`.env` 及其變體、私鑰與暫存檔不應提交；機密值不得寫入來源設定或範例檔。此版本不含網頁介面、排程、通知或部署設定。
+
+## 第二階段：中央與 22 縣市來源驗證
+
+從已合併第一階段的 `main` 建立；完整逐機關結果與限制見
+[第二階段驗證報告](docs/phase-two-validation.md)，實際官方公告、請求時間與回應雜湊見
+[機器證據](docs/phase-two-evidence.json)。新來源設定為 `data/phase-two-sources.json`，保留原候選及第一階段啟用清單。
+
+```bash
+python -m scripts.verify_phase_two
+python -m pytest -q
+```
+
+驗證會逐站檢查 robots、官方清單與已審查的授權宣告，將 `verified`、`pending`、`failed`、HTTP 證據、原始回應及真實公告存到獨立的 `var/phase-two/<時間>/`。來源失敗不刪除先前取得的公告。此輪有 5 個來源最新驗證成功；其餘來源仍有存取、規範或端點確認工作，不能視為全臺均已啟用。
+
+新增 `application_states` 保存五種申請狀態（開放申請、即將開放、已截止、核定結果、無法確認）與日期依據；`plan_relations` 保存跨站同計畫的候選關聯，原始公告不合併。CSV／Excel 同時匯出分類依據、狀態評估日、截止日與關聯 ID。原文缺乏明確日期或需要附件時維持未知；評估結果是標示日期當日的快照，日後需重跑更新。
