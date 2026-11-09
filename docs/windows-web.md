@@ -55,6 +55,6 @@ git -C ..\taiwan-grant-data switch --detach origin/grant-data
 
 ## 本次驗證紀錄
 
-- Python 3.12：`python -m pytest -q`，118 passed（包含既有功能與 11 項新增案例／參數組合）。
+- Python 3.12：`python -m pytest -q`，118 passed（包含既有功能與 10 項新增案例／參數組合）。
 - 實際 `grant-data` 快照 42 則公告以唯讀方式載入；Chromium / Playwright 檢查 1440×1000 與 390×844，均無 Streamlit 例外或頁面橫向溢出。
 - Windows 指令已提供，尚未在原生 Windows 主機實際執行。
