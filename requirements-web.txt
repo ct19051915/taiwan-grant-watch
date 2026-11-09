@@ -1,0 +1,4 @@
+-r requirements.txt
+
+streamlit==1.51.0
+tzdata==2025.2
