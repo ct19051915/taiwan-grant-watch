@@ -211,3 +211,7 @@ Actions `concurrency` 將手動與每日工作排隊，不取消進行中的工�
 上述檢查只需 Python 標準函式庫；也可用 SQLite 工具執行 `PRAGMA integrity_check`（應為 ok）及 `PRAGMA foreign_key_check`（應無資料列）。還原後重新啟用 workflow、手動執行一次（不要勾 initialize），確認成功再恢復每日排程。還原只回復該時點，之後的新增資料可能需要重新擷取。
 
 本機可執行 `python -m grant_watch.daily --initialize` 首次建立；之後執行 `python -m grant_watch.daily`。預設資料在忽略提交的 `var/`，本機執行不會自動推送 GitHub。測試命令仍為 `python -m pytest -q`，新增離線測試涵蓋每日重跑、更新、Excel 欄位、來源／詳情／匯出失敗保護、缺失／損壞資料庫與重疊執行。
+
+## 第四階段：本機公告查詢網頁
+
+新增 Streamlit 繁體中文搜尋、篩選、詳細證據及每日狀態頁；唯讀讀取既有 SQLite，不初始化資料庫、不改動每日排程。Windows 安裝、資料快照準備與啟動指令見 [本機網頁說明](docs/windows-web.md)。網頁依賴獨立放在 `requirements-web.txt`，未公開部署。
