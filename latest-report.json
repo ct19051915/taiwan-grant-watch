@@ -1,0 +1,39 @@
+{
+  "started_at": "2026-11-09T09:30:51.348330+00:00",
+  "status": "success",
+  "inserted": 42,
+  "updated": 0,
+  "unchanged": 0,
+  "failed_sources": [],
+  "sources": {
+    "moea-notices-rss": {
+      "inserted": 27,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "sme-business": {
+      "inserted": 3,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "ida": {
+      "inserted": 6,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "nstc": {
+      "inserted": 4,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "taipei": {
+      "inserted": 2,
+      "updated": 0,
+      "unchanged": 0
+    }
+  },
+  "published": true,
+  "announcement_count": 42,
+  "duration_seconds": 159.076,
+  "completed_at": "2026-11-09T09:33:30.424204+00:00"
+}
