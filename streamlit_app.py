@@ -1,4 +1,4 @@
-"""Local-only Traditional Chinese grant announcement browser."""
+"""Read-only Traditional Chinese grant announcement browser."""
 import os
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -31,13 +31,36 @@ def choose(label, rows, key):
                                 format_func=lambda v: '全部' if v is None else v)
 
 
-if st.sidebar.button('重新讀取本機資料'):
-    st.rerun()
+# Secrets are consumed only on the server; no token enters rendered data or logs.
+import hashlib
+from grant_watch.cloud_data import Config, SnapshotCache
+
+
+@st.cache_resource(show_spinner=False)
+def cloud_cache(repository, credential_key, ttl, _config):
+    return SnapshotCache(_config)
+
+
+cloud = None
 try:
-    snapshot = read_snapshot(os.environ.get('GRANT_DB_PATH', 'var/grants.sqlite3'))
-except DataError as exc:
-    st.error(str(exc))
-    st.info('請依 docs/windows-web.md 準備既有資料庫；網頁不會建立空白資料庫。')
+    settings = st.secrets.get('grant_data', {})
+except FileNotFoundError:
+    settings = {}
+refresh = st.sidebar.button('重新讀取資料')
+try:
+    if settings:
+        config = Config(settings.get('repository', ''), settings.get('token', ''),
+                        int(settings.get('cache_seconds', 300)))
+        cloud = cloud_cache(config.repository, hashlib.sha256(config.token.encode()).hexdigest(), config.ttl, config).load(force=refresh)
+        snapshot = read_snapshot(cloud['path'])
+        if cloud['warning']:
+            st.error(cloud['warning'])
+        st.caption('最後成功保存：' + taipei_time(cloud['report']['completed_at']))
+        st.caption('資料版本：' + cloud['sha'][:12] + '｜自動檢查間隔：' + str(config.ttl) + ' 秒')
+    else:
+        snapshot = read_snapshot(os.environ.get('GRANT_DB_PATH', 'var/grants.sqlite3'))
+except (DataError, ValueError, TypeError):
+    st.error('無法讀取資料。雲端請檢查 Streamlit Secrets 與私人來源權限；本機請依 docs/windows-web.md 準備既有資料庫。')
     st.stop()
 for warning in snapshot['warnings']:
     st.warning(warning)
@@ -79,7 +102,7 @@ with overview:
                          application_windows=a.get('application_windows', []), document=row['document']))
 with updates:
     report_path = os.environ.get('GRANT_REPORT_PATH', str(Path(os.environ.get('GRANT_DB_PATH', 'var/grants.sqlite3')).with_name('latest-report.json')))
-    report, warning = read_report(report_path)
+    report, warning = (cloud['report'], None) if cloud else read_report(report_path)
     if warning:
         st.warning(warning)
     st.text('報告狀態：' + display(report.get('status')))
@@ -103,3 +126,12 @@ with updates:
     st.subheader('來源涵蓋範圍')
     st.info('僅涵蓋上列來源及其已追蹤公告，並非全台政府補助清單。驗證來源不等於公告已確認為企業補助。')
     st.text('尚未涵蓋：未列於上方的中央部會、所屬機關、縣市與鄉鎮市區公所；未建立完整機關名冊，無法宣稱已全面涵蓋。')
+
+if cloud:
+    @st.fragment(run_every=config.ttl)
+    def poll_updates():
+        import time
+        cache = cloud_cache(config.repository, hashlib.sha256(config.token.encode()).hexdigest(), config.ttl, config)
+        if cache.checked is not None and time.monotonic() - cache.checked >= config.ttl:
+            st.rerun()
+    poll_updates()
