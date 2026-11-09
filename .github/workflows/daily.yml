@@ -6,9 +6,9 @@ on:
         description: '首次建立空資料庫（僅限尚無 grant-data 分支）'
         type: boolean
         default: false
-  # 啟用時移除下兩行註解；UTC 00:00 = 台灣 08:00
-   schedule:
-     - cron: '0 0 * * *'
+  # UTC 00:00 = 台灣 08:00
+  schedule:
+    - cron: '0 0 * * *'
 permissions:
   contents: write
 concurrency:

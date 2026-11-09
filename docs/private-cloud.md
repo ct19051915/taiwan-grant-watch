@@ -56,7 +56,7 @@ cache_seconds = 300
 
 Python 3.12 與既有 CI 一致，requirements.txt 現在同時包含 Streamlit、tzdata 和追蹤依賴；requirements-web.txt 保留為相容入口。無額外系統套件、SQLite 使用 Python 標準函式庫。部署後要檢查安裝日誌；平台未來 Python 支援變動時需重新評估，不可直接依賴自動升級。
 
-本機驗證：`python -m pip install -r requirements-dev.txt`、`python -m pytest -q`、`python -m pip check`。單元測試只用合成資料，禁止真實網路；驗證一致版本、TTL、手動更新、失敗保留、初次失敗、憑證遮蔽與 Streamlit 雲端介面。CI 沿用原 Tests workflow；每日 workflow 完全不動。部署權限與真實 Secrets 尚需前述人工驗收，測試通過不代表已部署。
+本機驗證：`python -m pip install -r requirements-dev.txt`、`python -m pytest -q`、`python -m pip check`。單元測試只用合成資料，禁止真實網路；驗證一致版本、TTL、手動更新、失敗保留、初次失敗、憑證遮蔽與 Streamlit 雲端介面。CI 沿用原 Tests workflow；每日 workflow 僅修正既有 schedule 的 YAML 縮排，維持 `0 0 * * *`、main 條件與所有追蹤步驟。部署權限與真實 Secrets 尚需前述人工驗收，測試通過不代表已部署。
 
 ## 官方依據
 
