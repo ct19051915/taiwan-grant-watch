@@ -1,0 +1,54 @@
+[
+  {
+    "id": "sme-business",
+    "agency": "經濟部中小及新創企業署",
+    "government_level": "central",
+    "city": null,
+    "url": "https://www.sme.gov.tw/list-tw-2275",
+    "method": "html",
+    "validation_status": "verified",
+    "last_checked_at": "2026-11-09T06:48:38.920628+00:00",
+    "terms_reviewed": true,
+    "terms_url": "https://www.sme.gov.tw/article-tw-2522-11061",
+    "discovery_url": "https://www.sme.gov.tw/",
+    "robots_url": "https://www.sme.gov.tw/robots.txt",
+    "parser": {
+      "item_selector": ".mainContent .listGroup > ul > li",
+      "link_selector": "a[href]",
+      "title_selector": ".title",
+      "announced_on_selector": "time"
+    },
+    "notes": "官方業務消息第一頁；標題關鍵字篩選；授權為政府資料開放授權條款第1版，保留官方出處。未辨識欄位保留 NULL。",
+    "last_check_outcome": "success",
+    "last_error": null,
+    "last_http_status": 200,
+    "last_verified_announcement_count": 3,
+    "verification_report": "docs/official-source-validation-2026-11-09.md"
+  },
+  {
+    "id": "moea-notices-rss",
+    "agency": "經濟部",
+    "government_level": "central",
+    "city": null,
+    "url": "https://www.moea.gov.tw/Mns/populace/news/NewsRSSdetail.aspx?Kind=2",
+    "method": "rss",
+    "validation_status": "verified",
+    "last_checked_at": "2026-11-09T06:48:38.920628+00:00",
+    "terms_reviewed": true,
+    "terms_url": "https://www.moea.gov.tw/Mns/populace/content/ContentFoot.aspx?menu_id=13863",
+    "discovery_url": "https://www.moea.gov.tw/Mns/populace/news/NewsRSS.aspx?menu_id=1430",
+    "robots_url": "https://www.moea.gov.tw/robots.txt",
+    "parser": {},
+    "exclude_title_contains": [
+      "補助計畫管理共通平台",
+      "產地標示不實案件檢舉處理及獎勵辦法",
+      "智慧財產權交流及協助產業創新活動"
+    ],
+    "notes": "官方訊息公告 RSS；排除平台維護、檢舉獎勵法規及非企業專利研討活動。授權為政府資料開放授權條款第1版，保留官方出處。仍需人工複核企業適用性。",
+    "last_check_outcome": "success",
+    "last_error": null,
+    "last_http_status": 200,
+    "last_verified_announcement_count": 28,
+    "verification_report": "docs/official-source-validation-2026-11-09.md"
+  }
+]

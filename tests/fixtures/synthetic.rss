@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>合成測試資料，非真實公告</title>
+<item><guid>fake-001</guid><title>【合成測試】企業研發補助</title><link>https://unit.gov.tw/news/1?utm_source=test</link><pubDate>Mon, 09 Nov 2026 08:00:00 +0800</pubDate><description>僅供測試的虛構公告，不代表政府計畫。</description></item>
+<item><guid>fake-002</guid><title>【合成測試】一般活動</title><link>https://unit.gov.tw/news/2</link></item>
+</channel></rss>

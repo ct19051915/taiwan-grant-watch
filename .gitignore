@@ -218,3 +218,29 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Runtime databases and SQLite journal/WAL sidecars (any output directory)
+*.db
+*.db-*
+*.sqlite*
+
+# Local credentials; only intentionally sanitized examples may be tracked
+.env.*
+!.env.example
+!.env.sample
+credentials*.json
+secrets*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Generated spreadsheets and local temporary files
+*.xlsx
+*.xls
+*.tmp
+*.temp
+*.bak
+*~
+.DS_Store
+/tmp/
