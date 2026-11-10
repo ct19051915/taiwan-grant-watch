@@ -221,3 +221,5 @@ Actions `concurrency` 將手動與每日工作排隊，不取消進行中的工�
 Streamlit 可使用 Secrets 中限定此 repo 的 Contents 唯讀憑證，從 `grant-data` 的同一 commit 安全讀取成功快照；支援快取、自動檢查、手動重讀與失敗保留。繁體中文查詢、篩選與證據功能沿用既有網頁。
 
 請依 [私人雲端部署文件](docs/private-cloud.md) 人工審查、合併及設定私人 app。文件列出平台 OAuth 過度授權限制、一個私人 app 的額度、替代方案、Secrets、部署參數與驗收步驟；此階段不自動部署或合併。
+
+雲端讀取亦支援根層 `GITHUB_TOKEN` Secrets，或在 `[grant_data]` 設定 `token = ""` 明確使用公開 repo 匿名讀取。伺服器日誌提供不含憑證的 HTTP 狀態碼與失敗階段，詳見上述部署文件的「資料讀取修正與診斷」。

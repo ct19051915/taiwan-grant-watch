@@ -33,7 +33,10 @@ def choose(label, rows, key):
 
 # Secrets are consumed only on the server; no token enters rendered data or logs.
 import hashlib
-from grant_watch.cloud_data import Config, SnapshotCache
+import logging
+from grant_watch.cloud_data import SnapshotCache, config_from_secrets
+
+logger = logging.getLogger(__name__)
 
 
 @st.cache_resource(show_spinner=False)
@@ -42,24 +45,23 @@ def cloud_cache(repository, credential_key, ttl, _config):
 
 
 cloud = None
-try:
-    settings = st.secrets.get('grant_data', {})
-except FileNotFoundError:
-    settings = {}
 refresh = st.sidebar.button('重新讀取資料')
 try:
-    if settings:
-        config = Config(settings.get('repository', ''), settings.get('token', ''),
-                        int(settings.get('cache_seconds', 300)))
-        cloud = cloud_cache(config.repository, hashlib.sha256(config.token.encode()).hexdigest(), config.ttl, config).load(force=refresh)
+    try:
+        cloud_config = config_from_secrets(st.secrets)
+    except FileNotFoundError:
+        cloud_config = None
+    if cloud_config is not None:
+        cloud = cloud_cache(cloud_config.repository, hashlib.sha256(cloud_config.token.encode()).hexdigest(), cloud_config.ttl, cloud_config).load(force=refresh)
         snapshot = read_snapshot(cloud['path'])
         if cloud['warning']:
             st.error(cloud['warning'])
         st.caption('最後成功保存：' + taipei_time(cloud['report']['completed_at']))
-        st.caption('資料版本：' + cloud['sha'][:12] + '｜自動檢查間隔：' + str(config.ttl) + ' 秒')
+        st.caption('資料版本：' + cloud['sha'][:12] + '｜自動檢查間隔：' + str(cloud_config.ttl) + ' 秒')
     else:
         snapshot = read_snapshot(os.environ.get('GRANT_DB_PATH', 'var/grants.sqlite3'))
 except (DataError, ValueError, TypeError):
+    logger.warning("cloud_data ui_failed stage=config_or_snapshot category=validation")
     st.error('無法讀取資料。雲端請檢查 Streamlit Secrets 與私人來源權限；本機請依 docs/windows-web.md 準備既有資料庫。')
     st.stop()
 for warning in snapshot['warnings']:
@@ -128,10 +130,10 @@ with updates:
     st.text('尚未涵蓋：未列於上方的中央部會、所屬機關、縣市與鄉鎮市區公所；未建立完整機關名冊，無法宣稱已全面涵蓋。')
 
 if cloud:
-    @st.fragment(run_every=config.ttl)
+    @st.fragment(run_every=cloud_config.ttl)
     def poll_updates():
         import time
-        cache = cloud_cache(config.repository, hashlib.sha256(config.token.encode()).hexdigest(), config.ttl, config)
-        if cache.checked is not None and time.monotonic() - cache.checked >= config.ttl:
+        cache = cloud_cache(cloud_config.repository, hashlib.sha256(cloud_config.token.encode()).hexdigest(), cloud_config.ttl, cloud_config)
+        if cache.checked is not None and time.monotonic() - cache.checked >= cloud_config.ttl:
             st.rerun()
     poll_updates()

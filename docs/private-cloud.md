@@ -66,3 +66,24 @@ Python 3.12 與既有 CI 一致，requirements.txt 現在同時包含 Streamlit�
 - [部署與 Python 選擇](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy)
 - [GitHub fine-grained PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 - [GitHub Contents API 大小限制](https://docs.github.com/en/rest/repos/contents#get-repository-content)
+
+## 資料讀取修正與診斷（2026-11-10）
+
+支援既有 `[grant_data]` 格式，也相容只在 Streamlit Secrets 設定根層 `GITHUB_TOKEN`：後者預設 repo 為 `ct19051915/taiwan-grant-watch`，快取 300 秒。`[grant_data].token` 優先於根層 `GITHUB_TOKEN`；repository 與 cache_seconds 仍可在該區段覆寫。不要把 `GITHUB_TOKEN` 寫在 `[grant_data]` 區段內。
+
+目前 repo 已由擁有者改為 Public。若確定維持公開資料存取，可不用 Token，在 Secrets 明確設定：
+
+```toml
+[grant_data]
+repository = "ct19051915/taiwan-grant-watch"
+token = ""
+cache_seconds = 300
+```
+
+空 token 不送 Authorization。若仍設定無效 token，GitHub 即使對 public repo 也可能回 401；程式不會暗中改用匿名重試，請自行修正／移除 token，或使用上面的空 token 設定覆蓋根層值。匿名 API 額度較低，雲端共享 IP 可能限流，應保留快取。未設定任何雲端 Secrets 時仍為本機模式。
+
+Manage app → Logs 可看到固定的 stage、HTTP 狀態碼及 auth=token/anonymous，失敗另記錄固定 category；不記錄 token、headers、回應本文、例外本文或 traceback。stage 包含 commit_download/commit_json、report_download/report_json/report_validation、database_download/database_write、sqlite_validation、snapshot_query。401 通常需檢查 token，403/429 檢查權限或 API 額度，404 檢查 repo／grant-data／檔案與私人存取權；JSON、SQLite 與檔案寫入失敗可由 stage/category 區分。修正 Secrets 後 Reboot，再按重新讀取；首次失敗仍不建立空資料庫，後續失敗保留前次成功快照。
+
+實際唯讀檢查：未附 Authorization 取得 grant-data commit、latest-report.json、grants.sqlite3 皆為 HTTP 200；同 commit 報告為 success/published，SQLite 與查詢 adapter 驗證成功。這不代表已驗證部署中的 Token（本工作環境無該 Secrets 存取權）。
+
+**公開狀態與既有每日工作**：public repo 的 grant-data 原始 SQLite 也可公開讀取；不等同私人網站。既有 daily.yml 的 `Require private repository` 會拒絕在 public repo 繼續寫入，因此目前每日更新可能停止。本修正依要求不修改 workflow、排程、repo 可見度或既有公告資料。若要保留原本每日流程及資料隱私，擁有者需將 repo 恢復 Private 並使用唯讀 token；若要維持 Public，應另行審查資料公開政策與 workflow 變更，不能僅靠本次讀取修正恢復追蹤。

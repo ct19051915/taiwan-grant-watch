@@ -13,6 +13,8 @@ def remote(tmp_path, monkeypatch):
     path = tmp_path / 'synthetic.sqlite3'
     with sqlite3.connect(path) as db:
         db.execute('CREATE TABLE announcements (id TEXT, title TEXT)')
+        db.execute('CREATE TABLE sources (id TEXT, config TEXT)')
+        db.execute('INSERT INTO sources VALUES (?,?)', ('synthetic', '{}'))
     state = dict(sha='a' * 40, report=dict(status='success', published=True,
                  completed_at='2026-11-09T00:00:00Z'), db=path.read_bytes(), fail=False)
     calls = []
@@ -83,7 +85,7 @@ def test_initial_failure_and_validation(remote):
         SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET')).load()
     assert 'SYNTHETIC_SECRET' not in str(error.value)
     with pytest.raises(DataError): Config('https://evil.test/repo', 'secret')
-    with pytest.raises(DataError): Config('owner/repo', '', 300)
+    with pytest.raises(DataError): Config('owner/repo', None, 300)
 
 
 def test_streamlit_cloud_flow(remote):
@@ -100,7 +102,7 @@ def test_streamlit_cloud_flow(remote):
 
 
 @pytest.mark.parametrize('status', [302, 401, 403, 404, 429, 500])
-def test_http_errors_do_not_read_or_render_response(monkeypatch, status):
+def test_http_errors_do_not_read_or_render_response(monkeypatch, status, caplog):
     class Response:
         status_code = status
         def __enter__(self): return self
@@ -111,6 +113,8 @@ def test_http_errors_do_not_read_or_render_response(monkeypatch, status):
     cache = SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET'))
     with pytest.raises(DataError):
         cache.load()
+    assert f'http_status={status}' in caplog.text
+    assert 'SYNTHETIC_SECRET' not in caplog.text
 
 
 def test_download_limit(monkeypatch):
@@ -123,3 +127,52 @@ def test_download_limit(monkeypatch):
     cache = SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET'))
     with pytest.raises(DataError, match='大小上限'):
         cache._get('commits/grant-data', limit=2)
+
+
+@pytest.mark.parametrize('secrets,token', [
+    ({'GITHUB_TOKEN': 'SYNTHETIC_SECRET'}, 'SYNTHETIC_SECRET'),
+    ({'grant_data': {'repository': 'owner/private', 'token': 'nested'}, 'GITHUB_TOKEN': 'root'}, 'nested'),
+    ({'grant_data': {'repository': 'owner/public', 'token': ''}, 'GITHUB_TOKEN': 'root'}, ''),
+    ({'grant_data': {'repository': 'owner/public'}}, ''),
+])
+def test_secret_formats(secrets, token):
+    from grant_watch.cloud_data import config_from_secrets
+    assert config_from_secrets(secrets).token == token
+    assert config_from_secrets({}) is None
+
+
+def test_public_requests_have_no_authorization(remote):
+    _, calls = remote
+    SnapshotCache(Config('owner/public')).load()
+    assert len(calls) == 3
+    assert all('Authorization' not in kwargs['headers'] for _, kwargs in calls)
+
+
+def test_root_token_streamlit_with_sources(remote):
+    from streamlit.testing.v1 import AppTest
+    app = AppTest.from_file('streamlit_app.py')
+    app.secrets['GITHUB_TOKEN'] = 'SYNTHETIC_SECRET'
+    app.run()
+    assert not app.exception
+    assert any('最後成功保存' in c.value for c in app.caption)
+
+
+@pytest.mark.parametrize('failure,stage', [('network','commit_download'), ('report','report_json'), ('sqlite','sqlite_validation')])
+def test_diagnostic_stages_without_secret(remote, caplog, failure, stage):
+    state, _ = remote
+    if failure == 'network': state['fail'] = True
+    elif failure == 'report': state['report'] = {'status': 'failure'}
+    else: state['db'] = b'SYNTHETIC_SECRET invalid sqlite'
+    if failure == 'report':
+        # Break JSON bytes rather than the report success semantics.
+        import grant_watch.cloud_data as module
+        original = module.SnapshotCache._get
+        def get(self, path, **kwargs):
+            return b'SYNTHETIC_SECRET invalid json' if 'latest-report' in path else original(self, path, **kwargs)
+        from unittest.mock import patch
+        with patch.object(module.SnapshotCache, '_get', get):
+            with pytest.raises(DataError): SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET')).load()
+    else:
+        with pytest.raises(DataError): SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET')).load()
+    assert 'stage=' + stage in caplog.text
+    assert 'SYNTHETIC_SECRET' not in caplog.text
