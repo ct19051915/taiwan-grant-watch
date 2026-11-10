@@ -25,6 +25,11 @@ class Store:
             last_seen_at TEXT NOT NULL, updated_at TEXT NOT NULL,
             source_validation_status TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS announcement_versions (
+            id INTEGER PRIMARY KEY, announcement_id TEXT NOT NULL REFERENCES announcements(id),
+            recorded_at TEXT NOT NULL, snapshot_json TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS version_announcement_index ON announcement_versions(announcement_id);
         CREATE INDEX IF NOT EXISTS hash_index ON announcements(content_hash);
         CREATE TABLE IF NOT EXISTS source_items (
             source_id TEXT NOT NULL REFERENCES sources(id),
@@ -49,7 +54,7 @@ class Store:
                 if previous:
                     old = json.loads(previous['config'])
                     changed = any(old.get(k) != source.get(k) for k in
-                                  ('url', 'method', 'parser', 'agency', 'government_level', 'city', 'terms_reviewed', 'exclude_title_contains', 'include_title_contains'))
+                                  ('url', 'method', 'parser', 'agency', 'government_level', 'city', 'terms_reviewed', 'exclude_title_contains', 'include_title_contains', 'detail_selector', 'detail_fields', 'detail_exclude_selectors', 'detail_ignored_line_patterns', 'terms_url', 'allow_empty'))
                     self.db.execute('UPDATE sources SET config=? WHERE id=?', (config, source['id']))
                     if changed:
                         self.db.execute("UPDATE sources SET validation_status='pending',last_success_at=NULL,last_checked_at=NULL,last_outcome=NULL,last_error=NULL WHERE id=?", (source['id'],))
@@ -89,6 +94,15 @@ class Store:
             data = dict(values, content_hash=digest, updated_at=timestamp) if changed else {}
             data.update(last_seen_at=timestamp, source_validation_status='verified')
             self.db.execute(f'UPDATE announcements SET {",".join(k+"=?" for k in data)} WHERE id=?', (*data.values(), uid))
+        if outcome in {'inserted', 'updated'}:
+            # 舊資料庫首次修改時也先保存修改前全文；所有版本與公告更新同一交易。
+            if row is not None and not self.db.execute(
+                    'SELECT 1 FROM announcement_versions WHERE announcement_id=?', (uid,)).fetchone():
+                self.db.execute('INSERT INTO announcement_versions(announcement_id,recorded_at,snapshot_json) VALUES (?,?,?)',
+                                (uid, row['updated_at'], json.dumps(dict(row), ensure_ascii=False)))
+            current = dict(self.db.execute('SELECT * FROM announcements WHERE id=?', (uid,)).fetchone())
+            self.db.execute('INSERT INTO announcement_versions(announcement_id,recorded_at,snapshot_json) VALUES (?,?,?)',
+                            (uid, timestamp, json.dumps(current, ensure_ascii=False)))
         self.db.execute('INSERT OR IGNORE INTO source_items VALUES (?,?,?)', (source_id, key, uid))
         return outcome
 

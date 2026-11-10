@@ -4,12 +4,16 @@ import json
 import re
 from zoneinfo import ZoneInfo
 from .models import parse_date, now
+from .topics import classify_topics
 from .quality import classify, DATE, GRANT
 
 
 def assess_announcement(row, document):
     """沿用第一階段分類，僅補充官方明示的起日／徵求期間證據。"""
     result = classify(row, document)
+    topic_document = document if document.get('official_url') == row['official_url'] else {}
+    result['topic_evidence'] = classify_topics(row['title'], topic_document)
+    result['topics'] = list(result['topic_evidence'])
     if result['classification'] != GRANT:
         return result
     period = result.get('application_period') or ''
@@ -123,7 +127,7 @@ def enriched_rows(store):
         if state and state['source_content_hash'] == row['content_hash']:
             assessment = json.loads(state['assessment_json'])
             row.update(application_status=state['status'], status_as_of=state['as_of'],
-                       category=assessment['classification'], classification_reason=assessment['reason'],
+                       category=assessment['classification'], topics='、'.join(assessment.get('topics', [])), classification_reason=assessment['reason'],
                        classification_evidence=json.dumps(assessment.get('evidence', {}),ensure_ascii=False),
                        deadline=assessment.get('deadline') or row['deadline'])
         else:

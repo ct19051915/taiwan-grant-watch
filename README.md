@@ -1,3 +1,5 @@
+> 目前開發階段：第八階段第一批，來源啟用名冊為 `data/phase-eight-sources.json`。實測與限制見 [第八階段報告](docs/phase-eight-validation.md)；以下較早階段的數量為歷史快照。
+
 # 台灣政府企業補助公告自動追蹤系統
 
 Python 3.12／SQLite 的第一階段實作。提供候選來源管理、RSS／Atom、HTML、JSON 擷取器、標準化、去重更新、失敗紀錄、CSV／Excel 匯出及 pytest 測試。
@@ -170,7 +172,7 @@ python -m pytest -q
 ## 第三階段：每天早上 8 點追蹤（尚未啟用）
 
 本版本只提供程式與操作方式，**不自動啟用排程、不合併 PR、不部署網站**。
-每日工作會使用第二階段清單中標記 verified 的 5 個來源；其他 22 個仍待處理，不能視為全臺公告均已涵蓋。來源新增或網站改版時，需要維護者確認端點、條款與設定。
+每日工作目前使用第八階段名冊中 enabled 的來源，每批最多 8 個；未啟用來源不加入每日請求，不能視為全臺公告均已涵蓋。來源新增或網站改版時，需要維護者確認端點、條款與設定。
 
 ### 第一次使用 GitHub Actions
 
@@ -178,9 +180,9 @@ python -m pytest -q
 2. 確認儲存庫維持 **Private**。目前採用同一私有儲存庫的獨立 `grant-data` 分支；所有能讀取此儲存庫的人也能讀取資料分支。GitHub 無法單獨把公開儲存庫的一個分支設為私有。
 3. 點 **Daily grant tracking → Run workflow**，選 **main**。只有首次、確認沒有歷史資料時，勾選 `initialize`。之後不要勾選。此流程只使用 GitHub 自動提供、單次工作有效的 `GITHUB_TOKEN`；不需購買服務或新增個人 Token。組織政策如禁止寫入，請管理員允許此 workflow 的 contents: write 權限。
 4. 等待執行完成。綠色代表整個流程完成；點入執行紀錄可看摘要。頁面下方 **Artifacts** 可下載報表 ZIP，解壓後用 Excel 開啟 `enterprise-grants.xlsx`（企業補助）或 `announcements.xlsx`（全部公告，含待確認項目）。欄位含名稱 title、分類 category、申請狀態 application_status、公告日期 announced_on、截止日期 deadline、官方網址 official_url。沒有明確日期時留白，請以官方內容為準。
-5. 要正式每天執行時，編輯 `.github/workflows/daily.yml`，移除 `schedule:` 與 `- cron: '0 0 * * *'` 前方的 `#`，透過 PR 合併到 main。UTC 00:00 即台灣時間 08:00。GitHub 可能延遲排程，不保證準點；仍可手動補跑。需要暫停時，在 Actions 的該工作選單點 **Disable workflow**；這也會停用手動執行，重新啟用後可恢復。
+5. 既有 `.github/workflows/daily.yml` 已設定每日 `0 0 * * *`；來源擴充仍須透過 PR 合併到 main，並符合 workflow 的私人 repository 檢查後才會抓取。UTC 00:00 即台灣時間 08:00。GitHub 可能延遲排程，不保證準點；仍可手動補跑。需要暫停時，在 Actions 的該工作選單點 **Disable workflow**；這也會停用手動執行，重新啟用後可恢復。
 
-報表免費保存 30 天，包含新增／更新／未變次數、失敗來源與原因、開始／結束時間及耗時。新增／更新是候選資料的寫入次數（跨來源同公告可計入更新）；失敗時不代表已保存。Excel 是當次候選結果，失敗的報表請勿當作正式資料。Artifacts 到期不影響資料分支。私有儲存庫 Actions 受帳號免費分鐘數與儲存額度限制，請在 GitHub Billing 查看用量；每日五站、單一工作優先控制成本，不使用付費外部服務。
+報表免費保存 30 天，包含新增／更新／未變次數、失敗來源與原因、開始／結束時間及耗時。新增／更新是候選資料的寫入次數（跨來源同公告可計入更新）；失敗時不代表已保存。Excel 是當次候選結果，失敗的報表請勿當作正式資料。Artifacts 到期不影響資料分支。私有儲存庫 Actions 受帳號免費分鐘數與儲存額度限制，請在 GitHub Billing 查看用量；每日最多八站、單一工作優先控制成本，不使用付費外部服務。
 
 ### 資料庫如何保存與保護
 

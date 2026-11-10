@@ -9,12 +9,14 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 import hashlib
 import json
+import re
+import time
 from pathlib import Path
 from urllib.parse import urlsplit
 from bs4 import BeautifulSoup
 from grant_watch.extractors import EXTRACTORS
 from grant_watch.http import Client, FetchError
-from grant_watch.models import Announcement, now
+from grant_watch.models import Announcement, now, parse_date
 from grant_watch.phase_two import assess_announcement, refresh_derived, enriched_rows
 from grant_watch.export import export_rows
 from grant_watch.service import load_sources
@@ -22,12 +24,17 @@ from grant_watch.storage import Store
 
 
 class EvidenceClient(Client):
-    def __init__(self, directory):
+    def __init__(self, directory, budget_seconds=None, max_requests=None):
         super().__init__(attempts=1)
         self.directory = directory
         self.events = []
+        self.deadline = time.monotonic() + budget_seconds if budget_seconds else None
+        self.max_requests = max_requests
 
     def _request(self, url, interval=None):
+        if ((self.deadline is not None and time.monotonic() >= self.deadline)
+                or (self.max_requests is not None and len(self.events) >= self.max_requests)):
+            raise FetchError('本批次請求／時間預算已用盡；保留上次成功快照')
         event = dict(url=url, checked_at=now())
         self.events.append(event)
         try:
@@ -54,14 +61,20 @@ def parse_document(row, source, response, event):
     node = soup.select_one(source['detail_selector'])
     if node is None:
         raise ValueError('找不到已設定官方詳情節點；需重新審查 selector')
+    for selector in source.get('detail_exclude_selectors', []):
+        for excluded in node.select(selector):
+            excluded.decompose()
     for hidden in node.select('script,style,noscript'):
         hidden.decompose()
     links = [dict(text=a.get_text(' ',strip=True),href=a['href']) for a in node.select('a[href]')]
     for br in node.select('br'):
         br.replace_with('\n')
+    body = '\n'.join(line for line in node.get_text('\n',strip=True).splitlines()
+                     if not any(re.fullmatch(pattern, line.strip())
+                                for pattern in source.get('detail_ignored_line_patterns', [])))
     return dict(official_url=row['official_url'], http_status=response.status_code,
                 page_title=soup.title.get_text(' ',strip=True) if soup.title else None,
-                body=node.get_text('\n',strip=True),links=links,error=None,
+                body=body,links=links,error=None,
                 fetched_at=event['checked_at'],raw_sha256=event['sha256'],raw_path=event['raw_path'])
 
 
@@ -82,12 +95,14 @@ def verify_source(source, directory, client):
             terms = read_page(client,source['terms_url'])
             text = BeautifulSoup(terms.text,'html.parser').get_text(' ',strip=True)
             # 除既有人工審查外，重新確認授權頁仍含授權與出處敘述。
-            if not ('授權' in text and '出處' in text):
+            government_license = '授權' in text and '出處' in text
+            cc0_license = '公眾領域貢獻宣告' in text and 'CC0 1.0' in text
+            if not (government_license or cc0_license):
                 raise ValueError('授權頁內容改變，待重新人工審查')
             record['terms_url'] = source['terms_url']
             record['terms_excerpt'] = text[max(0,text.find('授權方式')):text.find('授權方式')+800] if '授權方式' in text else text[:800]
             items = EXTRACTORS[source['method']]().parse(source,response.text)
-            if items:
+            if items or source.get('allow_empty', False):
                 record['status']='verified'
                 record['announcements']=[asdict(item) for item in items]
                 for item in items:
@@ -96,6 +111,18 @@ def verify_source(source, directory, client):
                     try:
                         detail = read_page(client,item.official_url)
                         record['documents'][row['official_url']] = parse_document(row,source,detail,client.events[-1])
+                        # 只依該站已驗證 selector 擷取詳情日期，不使用更新日或申請日替代。
+                        detail_soup = BeautifulSoup(detail.text, 'html.parser')
+                        for field in ('announced_on',):
+                            selector = source.get('detail_fields', {}).get(field + '_selector')
+                            node = detail_soup.select_one(selector) if selector else None
+                            if node is not None:
+                                setattr(item, field, parse_date(node.get_text(' ', strip=True)))
+                        document = record['documents'][row['official_url']]
+                        item.content = document['body']
+                        fields = assess_announcement(item.normalized(), document)
+                        for field in ('deadline', 'amount', 'eligibility'):
+                            setattr(item, field, fields.get(field))
                     except Exception as exc:
                         record['documents'][row['official_url']] = dict(official_url=row['official_url'],
                             http_status=detail.status_code if detail is not None else None,
@@ -107,6 +134,7 @@ def verify_source(source, directory, client):
         # 權限／規範未知留待確認，明確 HTTP、格式或 robots 禁止則 failed。
         record['status'] = 'pending' if any(x in message for x in ['proxy CONNECT','TLS','robots.txt HTTP','robots.txt 回傳 HTML','尚未','授權頁']) else 'failed'
         record['error'] = message
+    record['announcements'] = [asdict(item) for item in items]
     record['events']=client.events[start:]
     record['announcement_count']=len(items)
     saved = directory / (source['id'] + '-result.json')

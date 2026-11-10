@@ -55,12 +55,15 @@ def run(db_path, sources, output, initialize=False, verifier=verify_source):
                     raise ValueError('No enabled sources')
                 store.sync_sources(sources)
                 documents = {}
-                client = EvidenceClient(output)
+                client = EvidenceClient(output, budget_seconds=1200, max_requests=180)
                 for source in sources:
+                    if len(sources) > 8:
+                        raise ValueError('每批最多 8 個啟用來源，請分批驗證與上線')
                     record, items = verifier(source, output, client)
                     detail_errors = [d.get('error') for d in record['documents'].values() if d.get('error')]
                     if record['status'] != 'verified' or detail_errors:
                         error = record.get('error') or '; '.join(detail_errors) or record['status']
+                        store.record_failure(source['id'], error)
                         report['failed_sources'].append(dict(id=source['id'], error=error))
                         report['sources'][source['id']] = dict(error=error)
                         continue
@@ -112,10 +115,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--db', default='var/grants.sqlite3')
     parser.add_argument('--output', default='var/daily')
-    parser.add_argument('--sources', default='data/phase-two-sources.json')
+    parser.add_argument('--sources', default='data/phase-eight-sources.json')
     parser.add_argument('--initialize', action='store_true')
     args = parser.parse_args()
-    sources = [s for s in load_sources(args.sources) if s.get('validation_status') == 'verified']
+    sources = [s for s in load_sources(args.sources) if s.get('enabled', s.get('validation_status') == 'verified')]
     raise SystemExit(0 if run(args.db, sources, args.output, args.initialize)['status'] == 'success' else 1)
 
 
