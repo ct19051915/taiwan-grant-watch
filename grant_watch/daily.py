@@ -3,6 +3,7 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -84,11 +85,15 @@ def run(db_path, sources, output, initialize=False, verifier=verify_source):
                 export_rows(rows, output / 'announcements.xlsx')
                 export_rows([r for r in rows if r['category'] == '企業補助計畫'], output / 'enterprise-grants.xlsx')
                 report['announcement_count'] = len(rows)
+                (output / 'announcements.json').write_text(
+                    json.dumps(rows, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
             finally:
                 store.close()
             check_database(candidate)
             if report['failed_sources']:
                 raise ValueError('One or more sources failed; original database preserved')
+            report['database_sha256'] = hashlib.sha256(candidate.read_bytes()).hexdigest()
+            report['announcements_sha256'] = hashlib.sha256((output / 'announcements.json').read_bytes()).hexdigest()
             os.replace(candidate, db_path)
             report.update(status='success', published=True)
     except Exception as exc:

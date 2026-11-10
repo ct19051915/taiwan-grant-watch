@@ -86,4 +86,4 @@ Manage app → Logs 可看到固定的 stage、HTTP 狀態碼及 auth=token/anon
 
 實際唯讀檢查：未附 Authorization 取得 grant-data commit、latest-report.json、grants.sqlite3 皆為 HTTP 200；同 commit 報告為 success/published，SQLite 與查詢 adapter 驗證成功。這不代表已驗證部署中的 Token（本工作環境無該 Secrets 存取權）。
 
-**公開狀態與既有每日工作**：public repo 的 grant-data 原始 SQLite 也可公開讀取；不等同私人網站。既有 daily.yml 的 `Require private repository` 會拒絕在 public repo 繼續寫入，因此目前每日更新可能停止。本修正依要求不修改 workflow、排程、repo 可見度或既有公告資料。若要保留原本每日流程及資料隱私，擁有者需將 repo 恢復 Private 並使用唯讀 token；若要維持 Public，應另行審查資料公開政策與 workflow 變更，不能僅靠本次讀取修正恢復追蹤。
+**公開狀態與每日工作**：目前依擁有者要求維持 Public，grant-data SQLite、JSON 與歷史版本皆公開。第七階段移除 daily.yml 的 Private 限制，以唯讀蒐集／獨立最小權限發布工作更新資料；詳見 [第七階段](phase-seven-daily.md)。本文件前半部保留第五階段私人部署歷史，不代表目前 repo 必須設為 Private。不要將憑證或敏感資訊存入任何分支。
