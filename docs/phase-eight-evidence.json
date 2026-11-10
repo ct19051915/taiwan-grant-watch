@@ -1813,9 +1813,13 @@
     }
   },
   "automated_tests": {
-    "passed": 158,
-    "baseline_tests": 141,
+    "passed": 163,
+    "baseline_tests": 146,
     "new_tests": 17,
     "network": "disabled by test suite"
+  },
+  "base_sync": {
+    "remote_main": "fd7f3b5",
+    "phase_seven_public_workflow_preserved": true
   }
 }

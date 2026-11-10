@@ -72,3 +72,28 @@ def test_missing_corrupt_and_locked_database(tmp_path,source):
     with database_lock(db):
         assert run(db,[source],output,True,verifier())['status']=='failed'
     assert not db.exists()
+
+
+def test_snapshot_json_hash_and_historical_ids(tmp_path, source):
+    from grant_watch.snapshot import validate
+    import shutil
+    db, output = tmp_path/'db.sqlite3', tmp_path/'report'
+    assert run(db, [source], output, True, verifier())['status'] == 'success'
+    baseline = tmp_path/'baseline.sqlite3'
+    shutil.copyfile(db, baseline)
+    newer = replace(item(), external_id='new', official_url='https://unit.gov.tw/new')
+    assert run(db, [source], output, verifier=verifier(newer))['status'] == 'success'
+    snapshot = validate(db, output/'report.json', output/'announcements.json', baseline)
+    assert len(snapshot['announcements']) == 2  # old item absent from today's list survives
+    rows = json.loads((output/'announcements.json').read_text())
+    assert len({r['id'] for r in rows}) == 2
+    with sqlite3.connect(baseline) as old:
+        old.execute("UPDATE source_items SET announcement_id='missing-history'")
+        old.execute("UPDATE application_states SET announcement_id='missing-history'")
+        old.execute("UPDATE announcements SET id='missing-history'")
+    with pytest.raises(ValueError, match='Historical'):
+        validate(db, output/'report.json', output/'announcements.json', baseline)
+    with (output/'announcements.json').open('a') as handle:
+        handle.write(' ')
+    with pytest.raises(ValueError, match='digest'):
+        validate(db, output/'report.json', output/'announcements.json')

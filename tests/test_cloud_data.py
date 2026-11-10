@@ -176,3 +176,15 @@ def test_diagnostic_stages_without_secret(remote, caplog, failure, stage):
         with pytest.raises(DataError): SnapshotCache(Config('owner/private', 'SYNTHETIC_SECRET')).load()
     assert 'stage=' + stage in caplog.text
     assert 'SYNTHETIC_SECRET' not in caplog.text
+
+
+def test_new_database_digest_mismatch_preserves_generation(remote):
+    import hashlib
+    state, _ = remote
+    state['report']['database_sha256'] = hashlib.sha256(state['db']).hexdigest()
+    cache = SnapshotCache(Config('owner/public'))
+    first = cache.load()
+    state['sha'] = 'c' * 40
+    state['report']['database_sha256'] = '0' * 64
+    stale = cache.load(force=True)
+    assert stale['sha'] == first['sha'] and stale['warning']
