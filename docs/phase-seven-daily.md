@@ -53,6 +53,7 @@ Public 匿名模式可在 Streamlit 平台 Secrets 設定 `[grant_data]`、repos
 - actionlint 1.7.7 通過；pip check、git diff --check 通過。
 - 使用正式 42 則資料副本重新連線 5 個官方來源：全部 verified，新增 0、更新 0、未變 42、失敗 0，耗時 162.444 秒。SQLite 完整性、外鍵、歷史 ID 及 JSON 一致性通過。涵蓋中央 4 來源與地方臺北市 1 來源，不代表全臺來源已涵蓋。
 - 正式 Public grant-data 匿名讀取驗證，以及使用真實前後 42 筆副本的 Streamlit AppTest 切換驗證；不代表已對部署中的 app 進行正式資料更新驗收。
+- GitHub 實際 [workflow_dispatch dry-run #42749105946](https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42749105946) 成功（台灣 2026-11-10 11:23～11:26）；日誌確認 Contents: read、五站全部 verified、新增 0／更新 0／未變 42／失敗 0、歷史 ID 及快照驗證通過，兩份 artifact 上傳成功，publish skipped。正式 grant-data 仍為 `f375833f0338c6d6b5e82101af26842354732559`，main 亦未改動。
 - 本次未合併 main，未寫入正式 grant-data；正式寫入及下次 schedule 驗收須於人工合併後依上述方式完成。
 
 官方說明：[排程與 Public 60 天停用規則](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)、[GITHUB_TOKEN 最小權限](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication)、[手動執行](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)。
