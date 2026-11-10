@@ -102,3 +102,11 @@ python -m grant_watch.daily --db work/phase-eight/grants.sqlite3 --output work/p
 最終實網資料欄位完整度（非 NULL／43）：title 43/43；agency 43/43；announced_on 39/43；deadline 16/43；amount 5/43；eligibility 15/43；official_url 43/43。未知欄位維持 NULL。
 
 最終 43 則分類：待人工確認 14；企業補助計畫 17；非補助公告 12。43 是公告數，並非 43 個已確認企業補助方案。
+
+## GitHub 實際驗證
+
+- [Tests CI](https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776596707)：163 passed。
+- [每日流程 dry-run](https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704)：collect 成功，publish skipped；還原既有資料後共 43 則，新增 1／更新 38／未變 4，失敗來源 0，蒐集 172.435 秒，整個 collect 工作 3 分 15 秒，低於 45 分鐘上限。JSON／DB 雜湊及歷史 ID 檢查通過。
+- 本次升級將詳情內文納入雜湊並補齊欄位，既有資料首次升級出現更新為預期；不刪歷史公告、不改既有公告 ID。修正點閱統計後的同回應重播無假更新。
+- 執行前後 main 與 grant-data 遠端 SHA 完全相同；兩份 artifact 上傳成功。此處筆數及耗時來自 GitHub 公開日誌，執行環境下載 artifact 遭 HTTP 403，因此未宣稱已讀回該 artifact；本機 Excel／SQLite 讀回測試另已通過。
+- GitHub dry-run 使用已同步第七階段的應用程式版本；之後僅補測試 fixture 與驗證文件，應用程式及來源設定未變。

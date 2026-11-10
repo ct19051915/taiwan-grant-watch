@@ -1821,5 +1821,156 @@
   "base_sync": {
     "remote_main": "fd7f3b5",
     "phase_seven_public_workflow_preserved": true
+  },
+  "github_validation": {
+    "run": {
+      "conclusion": "success",
+      "createdAt": "2026-11-10T07:36:24Z",
+      "headSha": "5f1c6fe5193a88e9af745f311a2d11a221ebb784",
+      "jobs": [
+        {
+          "completedAt": "2026-11-10T07:39:44Z",
+          "conclusion": "success",
+          "databaseId": 129695998522,
+          "name": "collect",
+          "startedAt": "2026-11-10T07:36:29Z",
+          "status": "completed",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/setup-python@v5",
+              "number": 3,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run pip install -r requirements.txt",
+              "number": 4,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Restore data branch or explicitly initialize",
+              "number": 5,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Collect, classify and export",
+              "number": 6,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Validate complete snapshot and preserve historical IDs",
+              "number": 7,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Upload validated candidate",
+              "number": 8,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Show report",
+              "number": 9,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@v4",
+              "number": 10,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Post Run actions/setup-python@v5",
+              "number": 19,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 20,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 21,
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704/job/129695998522"
+        },
+        {
+          "completedAt": "2026-11-10T07:39:44Z",
+          "conclusion": "skipped",
+          "databaseId": 129697224241,
+          "name": "publish",
+          "startedAt": "2026-11-10T07:39:45Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704/job/129697224241"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-11-10T07:39:45Z",
+      "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704"
+    },
+    "report_summary_from_logs": {
+      "inserted": 1,
+      "updated": 38,
+      "unchanged": 4,
+      "failed_sources_count": 0,
+      "duration_seconds": 172.435,
+      "announcement_count": 43
+    },
+    "source_log_counts": {
+      "moea-notices-rss": 27,
+      "sme-business": 3,
+      "ida": 6,
+      "doit": 0,
+      "nstc": 4,
+      "taipei": 2,
+      "adi-events": 1
+    },
+    "production_refs_before": [
+      {
+        "ref": "refs/heads/grant-data",
+        "sha": "0eb55b16241c7062d4e1b35f04c7c0cb9831ed66"
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "fd7f3b57f9dd120a2c6c800e3102812cc52ddd04"
+      }
+    ],
+    "production_refs_after": [
+      {
+        "ref": "refs/heads/grant-data",
+        "sha": "0eb55b16241c7062d4e1b35f04c7c0cb9831ed66"
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "fd7f3b57f9dd120a2c6c800e3102812cc52ddd04"
+      }
+    ],
+    "test_run_url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776596707",
+    "tests_passed": 163,
+    "artifact_note": "Upload steps succeeded; local artifact download returned HTTP 403, so counts above were extracted from public workflow logs, not an artifact download."
   }
 }
