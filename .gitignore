@@ -245,3 +245,8 @@ secrets*.json
 .DS_Store
 /tmp/
 /work/
+
+# Private cloud credentials and data
+.streamlit/secrets.toml
+*.sqlite3
+*.sqlite3-*

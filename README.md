@@ -215,3 +215,9 @@ Actions `concurrency` 將手動與每日工作排隊，不取消進行中的工�
 ## 第四階段：本機公告查詢網頁
 
 新增 Streamlit 繁體中文搜尋、篩選、詳細證據及每日狀態頁；唯讀讀取既有 SQLite，不初始化資料庫、不改動每日排程。Windows 安裝、資料快照準備與啟動指令見 [本機網頁說明](docs/windows-web.md)。網頁依賴獨立放在 `requirements-web.txt`，未公開部署。
+
+## 第五階段：私人雲端部署準備
+
+Streamlit 可使用 Secrets 中限定此 repo 的 Contents 唯讀憑證，從 `grant-data` 的同一 commit 安全讀取成功快照；支援快取、自動檢查、手動重讀與失敗保留。繁體中文查詢、篩選與證據功能沿用既有網頁。
+
+請依 [私人雲端部署文件](docs/private-cloud.md) 人工審查、合併及設定私人 app。文件列出平台 OAuth 過度授權限制、一個私人 app 的額度、替代方案、Secrets、部署參數與驗收步驟；此階段不自動部署或合併。
