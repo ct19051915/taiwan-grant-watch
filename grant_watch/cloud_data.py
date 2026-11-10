@@ -1,6 +1,7 @@
-"""Private GitHub snapshots; never writes to the repository or exposes credentials."""
+"""Public or private GitHub snapshots; never writes to the repository or exposes credentials."""
 from dataclasses import dataclass, field
 import json
+import hashlib
 import logging
 from pathlib import Path
 import re
@@ -98,6 +99,8 @@ class SnapshotCache:
             raise ValueError('unsuccessful report')
         self.stage = 'database_download'
         payload = self._get(f'contents/grants.sqlite3?ref={sha}', binary=True)
+        if report.get('database_sha256') and hashlib.sha256(payload).hexdigest() != report['database_sha256']:
+            raise ValueError('database digest mismatch')
         # A new generation is published only after BOTH files validate. Old files survive failures.
         candidate = Path(self.directory.name) / f'{sha}.sqlite3'
         try:

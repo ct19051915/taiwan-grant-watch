@@ -167,45 +167,41 @@ python -m pytest -q
 
 新增 `application_states` 保存五種申請狀態（開放申請、即將開放、已截止、核定結果、無法確認）與日期依據；`plan_relations` 保存跨站同計畫的候選關聯，原始公告不合併。CSV／Excel 同時匯出分類依據、狀態評估日、截止日與關聯 ID。原文缺乏明確日期或需要附件時維持未知；評估結果是標示日期當日的快照，日後需重跑更新。
 
-## 第三階段：每天早上 8 點追蹤（尚未啟用）
+## 每日台灣時間 08:00 自動追蹤（第七階段）
 
-本版本只提供程式與操作方式，**不自動啟用排程、不合併 PR、不部署網站**。
-每日工作會使用第二階段清單中標記 verified 的 5 個來源；其他 22 個仍待處理，不能視為全臺公告均已涵蓋。來源新增或網站改版時，需要維護者確認端點、條款與設定。
+目前維持 **Public**，排程已在 daily.yml 設為 `0 0 * * *`（UTC 00:00／台灣 08:00）。第七階段修正須人工合併至 main 才會生效，GitHub 排程可能延遲。流程蒐集已驗證的 5 個來源（經濟部、中小及新創企業署、產業發展署、國科會、臺北市）；其餘 22 個候選來源尚未納入，不代表全臺全面涵蓋。
 
-### 第一次使用 GitHub Actions
+### 手動測試與正式執行
 
-1. 先審查並合併本 PR。在專案上方點 **Actions**；如 GitHub 要求，允許此儲存庫執行 Actions。這不會啟用每日排程。
-2. 確認儲存庫維持 **Private**。目前採用同一私有儲存庫的獨立 `grant-data` 分支；所有能讀取此儲存庫的人也能讀取資料分支。GitHub 無法單獨把公開儲存庫的一個分支設為私有。
-3. 點 **Daily grant tracking → Run workflow**，選 **main**。只有首次、確認沒有歷史資料時，勾選 `initialize`。之後不要勾選。此流程只使用 GitHub 自動提供、單次工作有效的 `GITHUB_TOKEN`；不需購買服務或新增個人 Token。組織政策如禁止寫入，請管理員允許此 workflow 的 contents: write 權限。
-4. 等待執行完成。綠色代表整個流程完成；點入執行紀錄可看摘要。頁面下方 **Artifacts** 可下載報表 ZIP，解壓後用 Excel 開啟 `enterprise-grants.xlsx`（企業補助）或 `announcements.xlsx`（全部公告，含待確認項目）。欄位含名稱 title、分類 category、申請狀態 application_status、公告日期 announced_on、截止日期 deadline、官方網址 official_url。沒有明確日期時留白，請以官方內容為準。
-5. 要正式每天執行時，編輯 `.github/workflows/daily.yml`，移除 `schedule:` 與 `- cron: '0 0 * * *'` 前方的 `#`，透過 PR 合併到 main。UTC 00:00 即台灣時間 08:00。GitHub 可能延遲排程，不保證準點；仍可手動補跑。需要暫停時，在 Actions 的該工作選單點 **Disable workflow**；這也會停用手動執行，重新啟用後可恢復。
+完整測試步驟、權限與驗證紀錄見 [第七階段說明](docs/phase-seven-daily.md)。Actions → Daily grant tracking → Run workflow，選 main 並勾 `dry_run` 可測試但不寫入資料。要正式補跑，選 main、不勾 `dry_run`、不勾 `initialize`。只有資料分支完全不存在且確定沒有歷史資料時，才可使用 `initialize`。
+
+PR 分支可手動勾 `dry_run` 測試；正式發布工作只允許 main。全部流程使用 GitHub 內建短效 GITHUB_TOKEN，不需要新增 PAT／Secrets；蒐集工作 Contents 唯讀，只有發布工作 Contents 寫入。Repository 預設權限可維持唯讀，若組織政策限制 workflow 提升權限，需由管理員處理。
 
 報表免費保存 30 天，包含新增／更新／未變次數、失敗來源與原因、開始／結束時間及耗時。新增／更新是候選資料的寫入次數（跨來源同公告可計入更新）；失敗時不代表已保存。Excel 是當次候選結果，失敗的報表請勿當作正式資料。Artifacts 到期不影響資料分支。私有儲存庫 Actions 受帳號免費分鐘數與儲存額度限制，請在 GitHub Billing 查看用量；每日五站、單一工作優先控制成本，不使用付費外部服務。
 
 ### 資料庫如何保存與保護
 
-正式檔案為 **`grant-data` 分支根目錄的 `grants.sqlite3`**；同分支 `latest-report.json` 記錄最近成功資料。資料庫、Excel、密鑰不提交 main。每次先下載既有資料庫並以 SQLite backup 建立暫存副本，再擷取清單及詳情、分類、重算申請狀態與跨站候選關聯、匯出 Excel、檢查完整性。歷史公告不刪除，已存詳情供未出現在當日清單的公告重新評估狀態。
+正式檔案為 **`grant-data` 分支根目錄的 `grants.sqlite3`**；同分支 `latest-report.json` 記錄最近成功資料，`announcements.json` 提供公告資料 JSON；三檔在同一 commit 發布。資料庫、Excel、密鑰不提交 main。每次先下載既有資料庫並以 SQLite backup 建立暫存副本，再擷取清單及詳情、分類、重算申請狀態與跨站候選關聯、匯出 Excel、檢查完整性。歷史公告不刪除，已存詳情供未出現在當日清單的公告重新評估狀態。
 
 任一來源或詳情失敗、寫入／分類／匯出錯誤時，原資料庫保持原樣；錯誤列於 Actions 日誌與報表。這是整批成功才保存的保守策略，某站長期失敗會阻止每日正式更新，需維護者修復來源。首次執行只抓目前清單，不會自動載入第二階段本機的 50 筆歷史資料；如需沿用既有 SQLite，應由維護者先檢查、備份，再放入資料分支。
 
-Actions `concurrency` 將手動與每日工作排隊，不取消進行中的工作；本機額外有檔案鎖。遠端使用一般 push，禁止 force push，若其他人同時改動資料分支，push 會失敗而保留遠端版本。**只有 Persist successful snapshot 步驟成功才代表遠端已保存**；後續報表上傳失敗可能造成工作紅色但資料已保存，請檢查該步驟及分支最新 commit。鎖只適用本機同一路徑；不要在其他電腦手動覆寫正式分支。
+Actions `concurrency` 防止手動與每日工作同時寫入，不取消進行中的工作（GitHub 最多保留一個等待中的執行，多次觸發可能取代等待項目）；本機額外有檔案鎖。遠端使用一般 push，禁止 force push，若其他人同時改動資料分支，push 會失敗而保留遠端版本。**只有 Persist successful snapshot 步驟成功才代表遠端已保存**；後續報表上傳失敗可能造成工作紅色但資料已保存，請檢查該步驟及分支最新 commit。鎖只適用本機同一路徑；不要在其他電腦手動覆寫正式分支。
 
-資料分支不存在時必須明確首次初始化；下載失敗、檔案遺失或損壞不會當作空資料庫重建。若未來公開程式儲存庫，必須先把資料移到另一個私有儲存庫，改用限定該儲存庫權限的 GitHub App／Secret；目前 workflow 會拒絕在公開儲存庫保存資料。請勿直接把整個現有儲存庫改為公開，歷史分支也會公開。
+資料分支不存在時必須明確首次初始化；下載失敗、檔案遺失或損壞不會當作空資料庫重建。依目前 Public 設定，資料分支與歷史版本同樣公開；只保存政府公告與衍生資料，禁止提交 Token、Secrets 或其他敏感資料。
 
 ### 備份與還原
 
 每次成功保存都是資料分支的一個 Git commit，無需依賴會到期的 Artifact。可在 GitHub 切換到 `grant-data`、點 **History**，選擇日期後下載該版本的 `grants.sqlite3`；也建議定期下載離線備份。不要刪除資料分支或強制推送歷史。Git 保存整份二進位檔，資料量大時需定期評估儲存空間，並非無限備份。
 
-要還原：先停用 workflow，等待所有執行結束；下載目前版本作備份。請維護者從要還原的 commit 取出 SQLite，執行完整性檢查後，以**新 commit** 提交到 `grant-data`（不改 main、不 force push）。例如在資料分支的乾淨 clone 執行：
+要還原：先停用 workflow，等待所有執行結束；下載目前版本作備份。請維護者從要還原的 commit 取出 SQLite，執行完整性檢查後，以**新 commit** 提交到 `grant-data`（不改 main、不 force push）。須將同一成功 commit 的 SQLite、JSON 與報告一起還原，保持雜湊一致。以下是 SQLite 完整性檢查範例，不能單獨推送而沿用不同版本的報告：
 
 ```bash
 # GOOD_COMMIT 換成 History 中確認的完整 commit SHA
  git show GOOD_COMMIT:grants.sqlite3 > restored.sqlite3
  python -c "import sqlite3; db=sqlite3.connect('file:restored.sqlite3?mode=ro',uri=True); assert db.execute('PRAGMA integrity_check').fetchone()[0]=='ok'; assert not db.execute('PRAGMA foreign_key_check').fetchall(); db.close()"
  mv restored.sqlite3 grants.sqlite3
- git add grants.sqlite3
- git commit -m 'Restore reviewed database snapshot'
- git push origin HEAD:grant-data
+# 再取出同一 GOOD_COMMIT 的 latest-report.json 及 announcements.json（如該版本有）
+# 完成一致版本驗證後，將全部檔案以新 commit 保存；不要 force push
 ```
 
 上述檢查只需 Python 標準函式庫；也可用 SQLite 工具執行 `PRAGMA integrity_check`（應為 ok）及 `PRAGMA foreign_key_check`（應無資料列）。還原後重新啟用 workflow、手動執行一次（不要勾 initialize），確認成功再恢復每日排程。還原只回復該時點，之後的新增資料可能需要重新擷取。
