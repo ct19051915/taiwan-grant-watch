@@ -90,6 +90,7 @@ def test_snapshot_json_hash_and_historical_ids(tmp_path, source):
     with sqlite3.connect(baseline) as old:
         old.execute("UPDATE source_items SET announcement_id='missing-history'")
         old.execute("UPDATE application_states SET announcement_id='missing-history'")
+        old.execute("UPDATE announcement_versions SET announcement_id='missing-history'")
         old.execute("UPDATE announcements SET id='missing-history'")
     with pytest.raises(ValueError, match='Historical'):
         validate(db, output/'report.json', output/'announcements.json', baseline)
