@@ -1,41 +1,51 @@
 {
-  "started_at": "2026-11-11T04:29:13.229369+00:00",
+  "started_at": "2026-11-11T05:54:36.620604+00:00",
   "status": "success",
   "inserted": 1,
-  "updated": 0,
-  "unchanged": 42,
+  "updated": 39,
+  "unchanged": 4,
   "failed_sources": [],
   "sources": {
     "moea-notices-rss": {
-      "inserted": 1,
-      "updated": 0,
-      "unchanged": 27
+      "inserted": 0,
+      "updated": 24,
+      "unchanged": 4
     },
     "sme-business": {
       "inserted": 0,
-      "updated": 0,
-      "unchanged": 3
+      "updated": 3,
+      "unchanged": 0
     },
     "ida": {
       "inserted": 0,
+      "updated": 6,
+      "unchanged": 0
+    },
+    "doit": {
+      "inserted": 0,
       "updated": 0,
-      "unchanged": 6
+      "unchanged": 0
     },
     "nstc": {
       "inserted": 0,
-      "updated": 0,
-      "unchanged": 4
+      "updated": 4,
+      "unchanged": 0
     },
     "taipei": {
       "inserted": 0,
+      "updated": 2,
+      "unchanged": 0
+    },
+    "adi-events": {
+      "inserted": 1,
       "updated": 0,
-      "unchanged": 2
+      "unchanged": 0
     }
   },
   "published": true,
-  "announcement_count": 43,
-  "database_sha256": "1ffe032828f764b0a6a33c0adde2a275b83c5b66280ca7d49634207debbe7d3f",
-  "announcements_sha256": "0bf67bcc6242fefb139573b5156dd4ce95a22b5e53f65ee736e8365d371d13af",
-  "duration_seconds": 165.444,
-  "completed_at": "2026-11-11T04:31:58.673256+00:00"
+  "announcement_count": 44,
+  "database_sha256": "98176d9285ed651389dd875cc44aea04cdd7c6fdaf39a863ab5c7d76f56e7253",
+  "announcements_sha256": "9968c0555ddc0417d6a7886d385e1c2d1801a14293f60e565a1ec2a0541e38a0",
+  "duration_seconds": 175.275,
+  "completed_at": "2026-11-11T05:57:31.895931+00:00"
 }
