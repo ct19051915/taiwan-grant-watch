@@ -4,6 +4,9 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 import streamlit as st
+from grant_watch.coverage import coverage_rows, coverage_summary
+from grant_watch.service import load_sources
+from grant_watch.topics import RULES
 from grant_watch.web_query import DataError, filter_announcements, read_report, read_snapshot, taipei_time
 
 st.set_page_config(page_title='台灣政府企業補助公告', page_icon='📋', layout='wide')
@@ -73,9 +76,11 @@ government = choose('中央／地方政府', rows, 'government_label')
 city = choose('縣市', rows, 'city')
 industry = choose('產業類別', rows, 'industry')
 st.sidebar.caption('產業僅採用資料庫既有類別；未提供時顯示待確認。')
+topics = st.sidebar.multiselect('補助主題（可複選）', list(RULES))
 status = choose('申請狀態', rows, 'application_status')
 open_only = st.sidebar.checkbox('僅顯示目前開放申請的補助')
 filtered = filter_announcements(rows, keyword, government, city, industry, status, open_only)
+filtered = [r for r in filtered if not topics or set(topics).intersection(r.get('topics', []))]
 latest = max((r.get('updated_at') or '' for r in rows), default='')
 st.caption('最後資料更新：' + taipei_time(latest))
 overview, updates = st.tabs(['公告總覽', '每日更新與來源涵蓋'])
@@ -89,6 +94,7 @@ with overview:
         a = row['assessment']
         with st.expander(f"{display(row.get('title'))} ｜ {row['application_status']}"):
             st.text('分類：' + row['classification'])
+            st.text('補助主題：' + ('、'.join(row.get('topics', [])) or '待確認'))
             st.text('主辦機關：' + display(row.get('agency')))
             st.text(row['government_label'] + ' ｜ 縣市：' + (row.get('city') or '待確認'))
             st.text('公告日期：' + display(row.get('announced_on')))
@@ -127,7 +133,19 @@ with updates:
             st.text('錯誤：' + str(source['last_error']))
     st.subheader('來源涵蓋範圍')
     st.info('僅涵蓋上列來源及其已追蹤公告，並非全台政府補助清單。驗證來源不等於公告已確認為企業補助。')
-    st.text('尚未涵蓋：未列於上方的中央部會、所屬機關、縣市與鄉鎮市區公所；未建立完整機關名冊，無法宣稱已全面涵蓋。')
+    catalog = load_sources(Path(__file__).parent / 'data/phase-eight-sources.json')
+    coverage = coverage_rows(catalog, snapshot['sources'])
+    summary = coverage_summary(coverage)
+    st.caption('涵蓋率＝已啟用且目前資料庫曾成功抓取的名冊來源／名冊來源數。中央分母僅為本批盤點機關，非全部中央機關；地方分母為 22 縣市。')
+    for level, label in [('central', '中央候選機關'), ('local', '22 縣市政府')]:
+        counts = summary[level]
+        st.metric(label + '涵蓋率', f"{counts['verified']}/{counts['total']}",
+                  help='已啟用 ' + str(counts['enabled']) + ' 個；成功不代表目前所有補助均已收錄。')
+    st.dataframe([dict(機關=r['agency'], 官方網址=r['url'], 蒐集方式=r['method'],
+                       已啟用=r['enabled'], 曾成功抓取=r['verified'], 公告數=r['announcement_count'],
+                       最近結果=r['last_outcome'], 尚未支援原因=r['reason']) for r in coverage],
+                 hide_index=True, width='stretch')
+    st.caption('公告數採來源關聯的不同公告數；同一公告可屬多個來源，故不可直接相加。未啟用來源的 0 筆不表示沒有補助。')
 
 if cloud:
     @st.fragment(run_every=cloud_config.ttl)

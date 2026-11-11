@@ -35,7 +35,7 @@ def collect(store, sources, client=None):
             if response.encoding is None or response.encoding.lower() == 'iso-8859-1':
                 response.encoding = response.apparent_encoding
             items = EXTRACTORS[source['method']]().parse(source, response.text)
-            if not items:
+            if not items and not source.get('allow_empty', False):
                 raise FetchError('本次未取得符合補助關鍵字的公告，不能標記驗證成功')
             results[source['id']] = store.save_batch(source['id'], items)
             LOG.info('source=%s success items=%d', source['id'], len(items))

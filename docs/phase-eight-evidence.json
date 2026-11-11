@@ -1,0 +1,1976 @@
+{
+  "checked_on": "2026-11-10",
+  "timezone": "Asia/Taipei",
+  "scope": "candidate validation, not the daily enabled subset",
+  "sources": {
+    "moea-notices-rss": {
+      "url": "https://www.moea.gov.tw/Mns/populace/news/NewsRSSdetail.aspx?Kind=2",
+      "method": "rss",
+      "checked_at": "2026-11-10T07:30:13.376212+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 27,
+      "config_sha256": "f23efb2d6b91300daa6b3d1919245a65e8c27785c6640a5d5709b23cce6928bc",
+      "terms_url": "https://www.moea.gov.tw/Mns/populace/content/ContentFoot.aspx?menu_id=13863",
+      "events": [
+        {
+          "url": "https://www.moea.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:30:13.376279+00:00",
+          "http_status": 200,
+          "sha256": "9b78ca9881b66860d7bdf0d51fbded73b4d40e3ce5fb37e767c4d6d24975017b",
+          "content_type": "text/plain"
+        },
+        {
+          "url": "https://www.moea.gov.tw/Mns/populace/news/NewsRSSdetail.aspx?Kind=2",
+          "checked_at": "2026-11-10T07:30:13.652135+00:00",
+          "http_status": 200,
+          "sha256": "b92c1fd84d08c4904fee4c1897d9a1aecd6df81fead627e7edd94e58c438860b",
+          "content_type": "text/xml"
+        },
+        {
+          "url": "https://www.moea.gov.tw/Mns/populace/content/ContentFoot.aspx?menu_id=13863",
+          "checked_at": "2026-11-10T07:30:16.500340+00:00",
+          "http_status": 200,
+          "sha256": "f70d7d191541a1ecc53d39030d755f176f13738e2071ca85eb67fdf97ea098bf",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124430",
+          "checked_at": "2026-11-10T07:30:19.504514+00:00",
+          "http_status": 200,
+          "sha256": "450094c67b81fa71fb3f8708be7fe08b462e1fb7cd310f8c04190c763d3d3dba",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124421",
+          "checked_at": "2026-11-10T07:30:22.616074+00:00",
+          "http_status": 200,
+          "sha256": "72287fd7e223574976d164ca0a3c50eca1f510a014ad0cce6d620b9a7fb9b364",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124332",
+          "checked_at": "2026-11-10T07:30:25.490606+00:00",
+          "http_status": 200,
+          "sha256": "152f79bdb53666589476148cb3b8613dd4abded738b94044c5b24cdaf1019def",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124330",
+          "checked_at": "2026-11-10T07:30:28.498163+00:00",
+          "http_status": 200,
+          "sha256": "f3c0d7b6211c5b9c1c62196b409c766aa75ff0b1eea30df22cac217d9c23ef6e",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124320",
+          "checked_at": "2026-11-10T07:30:31.474037+00:00",
+          "http_status": 200,
+          "sha256": "7ec0576671d75f44cc6ae595f57cc771b3eecdfc961a041901ca0367409dbb16",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124251",
+          "checked_at": "2026-11-10T07:30:34.466935+00:00",
+          "http_status": 200,
+          "sha256": "1f8aa743dc16dbd6afb59799d1dcf8a549521b8597a3f14a9cb7d6d7df59c544",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124175",
+          "checked_at": "2026-11-10T07:30:37.478240+00:00",
+          "http_status": 200,
+          "sha256": "e7eeb85319a97d14252baf6b9839fa1e3a5ac5c22a9674f2a413e8001d2ea648",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124159",
+          "checked_at": "2026-11-10T07:30:40.466982+00:00",
+          "http_status": 200,
+          "sha256": "2979740c3a93c5d1615f2a3328a29981db481307b647d672974854b4bc032f72",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124158",
+          "checked_at": "2026-11-10T07:30:43.462400+00:00",
+          "http_status": 200,
+          "sha256": "cd091d3db5408eacf8c778cf22d9bb2d6e43490ae9e08c563a78d8ed470b350c",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124126",
+          "checked_at": "2026-11-10T07:30:46.452206+00:00",
+          "http_status": 200,
+          "sha256": "f4c529912bf6a6b1e79547f4fc8d6655fc5a8c106031656b5bba6a56ccdd3c0b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124125",
+          "checked_at": "2026-11-10T07:30:49.454764+00:00",
+          "http_status": 200,
+          "sha256": "e7a41fc175377aa79dd717aa8c729a72de3a0444f5da1ffe57cdfaf98f894df6",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=124016",
+          "checked_at": "2026-11-10T07:30:52.521327+00:00",
+          "http_status": 200,
+          "sha256": "4c636cd7153693633945f0c3ae4971e4c038fdc00a3397c094345cc62f5d6ba2",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123859",
+          "checked_at": "2026-11-10T07:30:55.669741+00:00",
+          "http_status": 200,
+          "sha256": "8be5213a6d0830cbf6ca858416c594bf9ee0760c0fcc268fc62b25baa620b320",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123734",
+          "checked_at": "2026-11-10T07:30:58.666521+00:00",
+          "http_status": 200,
+          "sha256": "1a64bc5693448b6b001e2e644d324f17ff05f672099fa5334e81cc877861b732",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123664",
+          "checked_at": "2026-11-10T07:31:01.478665+00:00",
+          "http_status": 200,
+          "sha256": "38554e42e91d1364770ef5a4f0261f59781f834093a61c20415a074f9437e0ec",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123502",
+          "checked_at": "2026-11-10T07:31:04.695366+00:00",
+          "http_status": 200,
+          "sha256": "e68424e5f56f9c47aaa0c787c534bf851648eb9c2f0fcfd44f101bead8bdbb07",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123335",
+          "checked_at": "2026-11-10T07:31:07.481149+00:00",
+          "http_status": 200,
+          "sha256": "08aa4d978f25450edce4dd1d5acac6a2c4bdc863190000a40f36032dae88fe8a",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123192",
+          "checked_at": "2026-11-10T07:31:10.742716+00:00",
+          "http_status": 200,
+          "sha256": "102d7f66f1a80ecdde26137cd0e2914452a2cafa0e42b6e3b6d11ac20cc3c409",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=123139",
+          "checked_at": "2026-11-10T07:31:13.516155+00:00",
+          "http_status": 200,
+          "sha256": "2323cbf5ab53ecae505e71ac54467507891864981674e05126551db0b06fe86e",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122897",
+          "checked_at": "2026-11-10T07:31:16.468330+00:00",
+          "http_status": 200,
+          "sha256": "3fedbfcd52de95a6a856ec27de2b2ebc482b8f722a7967bba01048712d4d44a5",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122871",
+          "checked_at": "2026-11-10T07:31:19.504286+00:00",
+          "http_status": 200,
+          "sha256": "030d9c97f2b0449ceb4a93c0356a03e7453a26543aef563697f1588877d99583",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122872",
+          "checked_at": "2026-11-10T07:31:22.561563+00:00",
+          "http_status": 200,
+          "sha256": "d204656d66a5d80f165b5135fe394344fed9821a0fc7bafe05c336df0a9e3e0b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122873",
+          "checked_at": "2026-11-10T07:31:25.462440+00:00",
+          "http_status": 200,
+          "sha256": "a67b3e5efb178d463c28daf28fa47c1ff8fafbfbd498fdbca2e40b00b1ecae2b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122864",
+          "checked_at": "2026-11-10T07:31:28.527986+00:00",
+          "http_status": 200,
+          "sha256": "20f837ff167dc5489c118be10dc5b8a19484ee6c0874df1862a2fcad843d7025",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122847",
+          "checked_at": "2026-11-10T07:31:31.483136+00:00",
+          "http_status": 200,
+          "sha256": "fce1a570bd42daae8c4139247544c10cbdccf2b3459c408109d54c92bdff3dbc",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122841",
+          "checked_at": "2026-11-10T07:31:34.484539+00:00",
+          "http_status": 200,
+          "sha256": "d5efe63a7668a878098a07c25e19bda51b1cfe7d7fce593b5f77bafa0a0552f8",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=2&menu_id=41&news_id=122840",
+          "checked_at": "2026-11-10T07:31:37.651146+00:00",
+          "http_status": 200,
+          "sha256": "4fc09f5b18d6ad39f14ecf529672965a01d471e36eac57c33ecca90c78989afd",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "sme-business": {
+      "url": "https://www.sme.gov.tw/list-tw-2275",
+      "method": "html",
+      "checked_at": "2026-11-10T07:31:40.608638+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 3,
+      "config_sha256": "afdbf0418019bd98c8870457cc16e6b0835a74b667baaa40c94ffcabb7c7ea6d",
+      "terms_url": "https://www.sme.gov.tw/article-tw-2522-11061",
+      "events": [
+        {
+          "url": "https://www.sme.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:31:40.608804+00:00",
+          "http_status": 200,
+          "sha256": "c9f399db9b6d5b0a3928a70cf25b3fdc110d8f85a6d9ca80fab96491db081905",
+          "content_type": null
+        },
+        {
+          "url": "https://www.sme.gov.tw/list-tw-2275",
+          "checked_at": "2026-11-10T07:31:41.547315+00:00",
+          "http_status": 200,
+          "sha256": "279fb52be34aa6f80e98ad42d788a72db060d60a1ff85122102da25c20263f01",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.sme.gov.tw/article-tw-2522-11061",
+          "checked_at": "2026-11-10T07:31:45.456909+00:00",
+          "http_status": 200,
+          "sha256": "c411387f4501f8e6d017259b848e985073e8260e26661ac453b456788638e7e8",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.sme.gov.tw/article-tw-2275-15285",
+          "checked_at": "2026-11-10T07:31:49.057266+00:00",
+          "http_status": 200,
+          "sha256": "9d64eed07af694df4f3d33001ab55cb24d64c2c5f4e165b3706d42abe72d91b0",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.sme.gov.tw/article-tw-2275-15216",
+          "checked_at": "2026-11-10T07:31:50.250586+00:00",
+          "http_status": 200,
+          "sha256": "444d94ee56b4377cefabe59c2e3a33f64a034b6ebded663e50ccdc326d254785",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.sme.gov.tw/article-tw-2275-15153",
+          "checked_at": "2026-11-10T07:31:53.196910+00:00",
+          "http_status": 200,
+          "sha256": "45a2c28af7a9a6bd62b4ee360a1d24b4b9981bb2bb5b7be8de2f64ea54dd5337",
+          "content_type": "text/html;charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "ida": {
+      "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsList&type=eBulletin&lang=0",
+      "method": "html",
+      "checked_at": "2026-11-10T07:31:56.536254+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 6,
+      "config_sha256": "41a74e582a5c517dfcd4ecd7aa659e45fdfc569acb905e251fe62d9d3ee9fb27",
+      "terms_url": "https://www.ida.gov.tw/ctlr?PRO=default.OpenInformation",
+      "events": [
+        {
+          "url": "https://www.ida.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:31:56.536374+00:00",
+          "http_status": 404,
+          "sha256": "76b4556816a4843440b26e47988654da65ac1ce0d5a6ea6d72f71baa6f9b2458",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsList&type=eBulletin&lang=0",
+          "checked_at": "2026-11-10T07:31:57.379387+00:00",
+          "http_status": 200,
+          "sha256": "700fe405d4eb64d6dfdb0a2e2d856b2c3b1a6aae1490c28b143b3d2b5cbef219",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=default.OpenInformation",
+          "checked_at": "2026-11-10T07:31:59.972202+00:00",
+          "http_status": 200,
+          "sha256": "4a7a3da043e54ecc60459dd31fadbcf7c598c8d1cc2df85a7532cd82b55f189e",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43424&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:03.643553+00:00",
+          "http_status": 200,
+          "sha256": "6e27d81bbb2ce1b30005f25bcfb36a94d9ae1782d79431faf64b0061b4509aa1",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43346&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:06.521205+00:00",
+          "http_status": 200,
+          "sha256": "9541cb587e67e16a0c265a9b154916f9ea7c5547a827bd445897eefe4e558753",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43296&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:09.026435+00:00",
+          "http_status": 200,
+          "sha256": "906d4fead53647841fd3506966925bd845556359c2db2f36b75b36ebcd8afe3a",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43267&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:11.836204+00:00",
+          "http_status": 200,
+          "sha256": "901bd03e92def466138c0aeea26bfa844e651fcb1cbdaef514122a3f7f80bfb1",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43266&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:14.845397+00:00",
+          "http_status": 200,
+          "sha256": "e858b951a4c35a4cc33d01ff4f8b6670c3f0d4f312fcbefaa4a4a4014ea03753",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.ida.gov.tw/ctlr?PRO=news.NewsView&id=43265&type=eBulletin",
+          "checked_at": "2026-11-10T07:32:18.049152+00:00",
+          "http_status": 200,
+          "sha256": "c8b1a10a74793b8ffb6840c34704faa4ee07856dd78f293882b6f41ce8f6e558",
+          "content_type": "text/html;charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "doit": {
+      "url": "https://www.moea.gov.tw/Mns/doit/news/NewsRSSdetail.aspx?sno=31&Kind=1",
+      "method": "rss",
+      "checked_at": "2026-11-10T07:32:21.412557+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 0,
+      "config_sha256": "5c3cfcafcba9903614289d183722db561043e9da477648d434686345717b345a",
+      "terms_url": "https://www.moea.gov.tw/Mns/doit/content/Content.aspx?menu_id=14016",
+      "events": [
+        {
+          "url": "https://www.moea.gov.tw/Mns/doit/news/NewsRSSdetail.aspx?sno=31&Kind=1",
+          "checked_at": "2026-11-10T07:32:21.412720+00:00",
+          "http_status": 200,
+          "sha256": "ee0a1d54f5990bc8e28bd874455765e534bd34b5ceb4239ab13156b641089200",
+          "content_type": "text/xml"
+        },
+        {
+          "url": "https://www.moea.gov.tw/Mns/doit/content/Content.aspx?menu_id=14016",
+          "checked_at": "2026-11-10T07:32:21.455859+00:00",
+          "http_status": 200,
+          "sha256": "878c6d4b111924ca6cb34fb759237deba1d2165b0f68e604e703900e91284a92",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "nstc": {
+      "url": "https://www.nstc.gov.tw/folksonomy/rfpList",
+      "method": "html",
+      "checked_at": "2026-11-10T07:32:24.473982+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 4,
+      "config_sha256": "e49f29f5a55410528dcf679198c83a2607baaa640ce13e533fd111c4703ab5a1",
+      "terms_url": "https://www.nstc.gov.tw/folksonomy/detail/a22a29a9-03d7-4d55-850a-f4f6ca1a04e9?l=ch",
+      "events": [
+        {
+          "url": "https://www.nstc.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:32:24.474089+00:00",
+          "http_status": 404,
+          "sha256": "b9d456666f3bc59d91886d350fc9f9abe53e20dcf5a2555081e83889b2f82c3f",
+          "content_type": "text/html;charset=UTF-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/rfpList",
+          "checked_at": "2026-11-10T07:32:26.034801+00:00",
+          "http_status": 200,
+          "sha256": "f02a263d4d7c87867fee3d39daaecb680ebe7a1d7d9d44e0daacc18e2d75149b",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/detail/a22a29a9-03d7-4d55-850a-f4f6ca1a04e9?l=ch",
+          "checked_at": "2026-11-10T07:32:28.165941+00:00",
+          "http_status": 200,
+          "sha256": "62563c61bf00f0e56471f2ea1394d536a33fa07cc2e5cf86c8829ff150f84812",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/rfpDetail/493bfc0d-8e62-4826-9982-3d208f60791c?l=ch",
+          "checked_at": "2026-11-10T07:32:31.294359+00:00",
+          "http_status": 200,
+          "sha256": "5e8514b25d3c228e9107ae87e868d5666b3cfa8933c13f363f08d830e6b8b629",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/rfpDetail/d3f257c3-a02c-4bfd-bcd1-a9488a3d728a?l=ch",
+          "checked_at": "2026-11-10T07:32:34.442678+00:00",
+          "http_status": 200,
+          "sha256": "278b829fce2ed9b9541427d8713015f808c49e39ce9db8b739bd6ea36d307c3b",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/rfpDetail/c8d1b079-d884-4df2-be6e-59a72a597ed7?l=ch",
+          "checked_at": "2026-11-10T07:32:37.264383+00:00",
+          "http_status": 200,
+          "sha256": "5f40cd4c368a8b50748bda39f9bd6fe6f8edea481164d5f6e5d74fcfdb42699b",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.nstc.gov.tw/folksonomy/rfpDetail/58ff35a0-e94a-4b3e-b50f-9c9ed4c88a51?l=ch",
+          "checked_at": "2026-11-10T07:32:40.296114+00:00",
+          "http_status": 200,
+          "sha256": "a6342fbeb80cc960496645a19bf10159519d7393f467612108e0ff7c3ae1070f",
+          "content_type": "text/html;charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "taipei": {
+      "url": "https://doed.gov.taipei/News.aspx?n=69F827A50BC26F06&sms=9391BC948EC0703C",
+      "method": "html",
+      "checked_at": "2026-11-10T07:32:43.323141+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 2,
+      "config_sha256": "5e6e3dbbb840c1c7b02036edd3ad5dabf82df9f5b8747784aed9a3a19e251fd2",
+      "terms_url": "https://doed.gov.taipei/News_Content.aspx?n=725A6116FE539B2B&sms=E67A327F533A5C5B&s=93C5362703420F33",
+      "events": [
+        {
+          "url": "https://doed.gov.taipei/robots.txt",
+          "checked_at": "2026-11-10T07:32:43.323260+00:00",
+          "http_status": 404,
+          "sha256": "1807ea534a029cbca5169e878f0950f5b44cc388f7917d83d8811de3b21e82cb",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://doed.gov.taipei/News.aspx?n=69F827A50BC26F06&sms=9391BC948EC0703C",
+          "checked_at": "2026-11-10T07:32:44.422612+00:00",
+          "http_status": 200,
+          "sha256": "3b6ef0a4e2d22f08d536accc5238d1fcbf82fdeea794664bc45bc1b515bab0b9",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://doed.gov.taipei/News_Content.aspx?n=725A6116FE539B2B&sms=E67A327F533A5C5B&s=93C5362703420F33",
+          "checked_at": "2026-11-10T07:32:46.701345+00:00",
+          "http_status": 200,
+          "sha256": "9900d65b858835481b250071e8182aeef37c045ee331d9a524dc327eb6884e99",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://doed.gov.taipei/News_Content.aspx?n=69F827A50BC26F06&sms=9391BC948EC0703C&s=6ED3A1118FE8B304",
+          "checked_at": "2026-11-10T07:32:49.707707+00:00",
+          "http_status": 200,
+          "sha256": "cad79420d85594030637bfdc00626ed7401bf675d451ef1e61e6cb9e24b5c994",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://doed.gov.taipei/News_Content.aspx?n=69F827A50BC26F06&sms=9391BC948EC0703C&s=BFEB55457A1D1BB7",
+          "checked_at": "2026-11-10T07:32:54.048707+00:00",
+          "http_status": 200,
+          "sha256": "00e7f33e175755926aeae85bd12298008caefad393017c8e8b7470de3198e5d8",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "new-taipei": {
+      "url": "https://www.economic.ntpc.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:26.355559+00:00",
+      "status": "pending",
+      "error": "robots.txt 回傳 HTML，需人工檢查",
+      "count": 0,
+      "config_sha256": "ddebff7eb11fa52f2c2695ca8a5403046743aa0aeea581b868f9bcdbf7ddf1e0",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.economic.ntpc.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:26.355590+00:00",
+          "http_status": 200,
+          "sha256": "c8f730d13ba8556a66060991ff84943cd90684578c874dfaa9c2a72928241e1b",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "taoyuan": {
+      "url": "https://edb.tycg.gov.tw/News.aspx?n=3887&sms=10027",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:26.356297+00:00",
+      "status": "pending",
+      "error": "robots.txt HTTP 428，保守停止",
+      "count": 0,
+      "config_sha256": "b00db7117c96e4a60f1096f7482ae092f4a2c533a2879ac870ed0603fbb28249",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://edb.tycg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:26.356326+00:00",
+          "http_status": 404,
+          "sha256": "efab46120571bf69dc080778edd4cd6c9d6f20afb7998cecf68d50e31c0eb6c6",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edb.tycg.gov.tw/News.aspx?n=3887&sms=10027",
+          "checked_at": "2026-11-10T07:17:28.311742+00:00",
+          "http_status": 200,
+          "sha256": "924dc660fdd1a84cfed45707bc2dea6a74c4833511bbe511150a29c8d6daa1f2",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.tycg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:35.374516+00:00",
+          "http_status": 428,
+          "sha256": "fe1f0bd3237e61a99ecdfac02bd15f546bf34463d6105be353011ac4a1c29799",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "taichung": {
+      "url": "https://www.economic.taichung.gov.tw/41064/Lpsimplelist",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:26.390821+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 7,
+      "config_sha256": "0fa5e230818748604b6e972ff97e418af9008df529bd2ed8e7e8a2e4a024192a",
+      "terms_url": "https://www.economic.taichung.gov.tw/565745/post",
+      "events": [
+        {
+          "url": "https://www.economic.taichung.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:26.390932+00:00",
+          "http_status": 302,
+          "sha256": "aac71800ed92f41d817d21c09a7eb63a4ae8277f2b6a3b4280bedad71f1a6b9b",
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "http://www.economic.taichung.gov.tw/robots",
+          "checked_at": "2026-11-10T07:17:28.183773+00:00",
+          "http_status": 301,
+          "sha256": "d16ed64e9c2be4c2ddeb8895ff878df72170ed23fbeaeb068d6eb1644bcf2861",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/robots",
+          "checked_at": "2026-11-10T07:17:29.932269+00:00",
+          "http_status": 200,
+          "sha256": "bf62c0d9cb9e86a7d8b4bf47637615bef74b18749484ca144143968549b857e5",
+          "content_type": "text/plain; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/41064/Lpsimplelist",
+          "checked_at": "2026-11-10T07:17:32.775820+00:00",
+          "http_status": 200,
+          "sha256": "84a8aabbb2042b0920b45ce3d0cde4c278d588d5b80f02db90854c106ab88425",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/565745/post",
+          "checked_at": "2026-11-10T07:17:36.386930+00:00",
+          "http_status": 200,
+          "sha256": "03efe5eaa9e7117d31c2c6803bd9baf6e58b6166fe6f86f9caaaf76a3675ac26",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/3275815/post",
+          "checked_at": "2026-11-10T07:17:39.493207+00:00",
+          "http_status": 200,
+          "sha256": "d1248c4641c25f6f110e5182df829d9cd92c40c8eed3dff2eccbdaba3f17ce5e",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/3246652/post",
+          "checked_at": "2026-11-10T07:17:41.861273+00:00",
+          "http_status": 200,
+          "sha256": "87daa9405720f5978eccecabb69da21f78ead5914b75abb1b3c20fff367c4dba",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/16103/16153/16163/1717445/2764073/",
+          "checked_at": "2026-11-10T07:17:45.022293+00:00",
+          "http_status": 200,
+          "sha256": "56dbfaf73e3b91d6bf6b9588f9cfc3104c00dc6cd0df2dadbe49f94a5c5c61e0",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/3176021/post",
+          "checked_at": "2026-11-10T07:17:48.050891+00:00",
+          "http_status": 200,
+          "sha256": "520c54716a3d704ee120f07310f7e908290e47660f556f6d149c55527158cf45",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/16103/16153/16163/16181/1546947/",
+          "checked_at": "2026-11-10T07:17:51.028164+00:00",
+          "http_status": 200,
+          "sha256": "163e68147a28e5628d987b27c955d3e73bb5fd5fbe1b5d2e45412c6b936b7fd6",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/2290185/post",
+          "checked_at": "2026-11-10T07:17:54.023564+00:00",
+          "http_status": 200,
+          "sha256": "88bc149ea34c01e10b28035b0a13d1eccde434d431b6b4a85be1686dc0f5d851",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/2010363/post",
+          "checked_at": "2026-11-10T07:17:56.956666+00:00",
+          "http_status": 200,
+          "sha256": "a19ba5c540c14be4d34e125a34378498c044fd5eb5b01d2bbd7cec12cf2494cb",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": [
+        {
+          "url": "https://www.economic.taichung.gov.tw/16103/16153/16163/1717445/2764073/",
+          "error": "找不到已設定官方詳情節點；需重新審查 selector"
+        },
+        {
+          "url": "https://www.economic.taichung.gov.tw/16103/16153/16163/16181/1546947/",
+          "error": "找不到已設定官方詳情節點；需重新審查 selector"
+        }
+      ]
+    },
+    "tainan": {
+      "url": "https://economic.tainan.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:28.728972+00:00",
+      "status": "failed",
+      "error": "robots.txt 重新導向過多",
+      "count": 0,
+      "config_sha256": "93af31c1466c2bd09f13b55bbcad210cf0a07aaa4d8f2aaf2387b19ee221ee32",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://economic.tainan.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:28.729004+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://economic.tainan.gov.tw/default.aspx",
+          "checked_at": "2026-11-10T07:17:29.962624+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://economic.tainan.gov.tw/default.aspx",
+          "checked_at": "2026-11-10T07:17:31.949746+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://economic.tainan.gov.tw/default.aspx",
+          "checked_at": "2026-11-10T07:17:34.925505+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://economic.tainan.gov.tw/default.aspx",
+          "checked_at": "2026-11-10T07:17:37.926820+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://economic.tainan.gov.tw/default.aspx",
+          "checked_at": "2026-11-10T07:17:41.098139+00:00",
+          "http_status": 302,
+          "sha256": "69f249404affd3b72647de15f32326a8a14667cddee0eeff8176b5ea3f1c8703",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "kaohsiung": {
+      "url": "https://edbkcg.kcg.gov.tw/News.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:37.425070+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 8,
+      "config_sha256": "c5bef46d27419c881a6a25e86244b14112522900e00a08418f1fb4195835a53d",
+      "terms_url": "https://edbkcg.kcg.gov.tw/cp.aspx?n=066697767893639B",
+      "events": [
+        {
+          "url": "https://edbkcg.kcg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:37.425122+00:00",
+          "http_status": 404,
+          "sha256": "eab09f82e87641fb3e8c72b6c9e061f11684c7d8345925aad1fd7de4c05f87ab",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784",
+          "checked_at": "2026-11-10T07:17:38.896326+00:00",
+          "http_status": 200,
+          "sha256": "c9e98e4a1f52537deeb15e11d19d87a7068e70dc140fe754ff2bae800a3a738b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/cp.aspx?n=066697767893639B",
+          "checked_at": "2026-11-10T07:17:45.074039+00:00",
+          "http_status": 200,
+          "sha256": "73b3fb329ff5f7e5ac872cf5d7f5e37b3bf6ea4bc8d35d4c549400f3fad880d4",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=F296D42C3ADEEC87",
+          "checked_at": "2026-11-10T07:18:00.020810+00:00",
+          "http_status": 200,
+          "sha256": "74bb9612ebf3ef79ce6227f4ce1d30dd9aee71e20b421aaef1a9923f7f1e8c38",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=C646E28C455F5D3A",
+          "checked_at": "2026-11-10T07:18:04.899463+00:00",
+          "http_status": 200,
+          "sha256": "55e177c82990b83458787ab619352220d5a686443c6961d578b6328a4534c1c5",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=0277F5B3CD08842A",
+          "checked_at": "2026-11-10T07:18:08.327863+00:00",
+          "http_status": 200,
+          "sha256": "581668037c35f290671b11a6f64642aefc93ebfdd7c28172a90e01b76aa23c90",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=D0BE62FF6B67E46B",
+          "checked_at": "2026-11-10T07:18:15.123854+00:00",
+          "http_status": 200,
+          "sha256": "2c86cf6b5f00cf48866fd8ac7aef8a4a46130bbe417fe5a6bd74a86298bf2c58",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=114956B991DF73D3",
+          "checked_at": "2026-11-10T07:18:18.919387+00:00",
+          "http_status": 200,
+          "sha256": "0cc0d4b7792bfabb3194cea62037d861c2bdcfb0f29b63af035502ed5ad8d7bd",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=E8AE46C1A762F59E",
+          "checked_at": "2026-11-10T07:18:24.153336+00:00",
+          "http_status": 200,
+          "sha256": "6a135b2a7990946174afff62591346b68437ddd36deae3f6ebad32730a451ba4",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=B27DD8B2B62B199B",
+          "checked_at": "2026-11-10T07:18:27.955749+00:00",
+          "http_status": 200,
+          "sha256": "75672a8c364ed9c95c52874571872a286cbf7eb1c7ac704695f9bab8abdbd95e",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://edbkcg.kcg.gov.tw/News_Content.aspx?n=9A7F03ABA05E4DEF&sms=BE8A73D3A0435784&s=4898F7B455F9D2D1",
+          "checked_at": "2026-11-10T07:18:31.811083+00:00",
+          "http_status": 200,
+          "sha256": "001a5f0f569b7284cb0ce70d799c4089780f5f0615aed8b9e35edb5f7067ef68",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "keelung": {
+      "url": "https://www.klcg.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:38.987423+00:00",
+      "status": "pending",
+      "error": "robots.txt 回傳 HTML，需人工檢查",
+      "count": 0,
+      "config_sha256": "24db4d9bdde354fc9a8546f2297f838a82de509c3b43f92197f1db2c3932fe71",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.klcg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:38.987482+00:00",
+          "http_status": 302,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html;charset=utf-8"
+        },
+        {
+          "url": "https://www.klcg.gov.tw",
+          "checked_at": "2026-11-10T07:17:42.776588+00:00",
+          "http_status": 302,
+          "sha256": "69e00bd9a29ad5d3c712e63830b7b22cae6871ade9366e3658e2e495a90b1b51",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.klcg.gov.tw/tw/klcg1",
+          "checked_at": "2026-11-10T07:17:43.481677+00:00",
+          "http_status": 200,
+          "sha256": "bb7e1159b5505c3cbf1b359224fc39d8fa5d1a6a70fe8c081056f32700a2ed20",
+          "content_type": "text/html"
+        }
+      ],
+      "detail_errors": []
+    },
+    "hsinchu-city": {
+      "url": "https://www.hccg.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:42.303674+00:00",
+      "status": "failed",
+      "error": "公告頁 HTTP 403",
+      "count": 0,
+      "config_sha256": "79d64cce2e032ede411d4ae6779db6c4326d49f4335a46a7e9b9c71d171f1455",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.hccg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:42.303727+00:00",
+          "http_status": 200,
+          "sha256": "3073d1e371afb3271c7666148766fedc5145f7d8440f7114062db79b7bd58add",
+          "content_type": "text/plain; charset=utf-8"
+        },
+        {
+          "url": "https://www.hccg.gov.tw/",
+          "checked_at": "2026-11-10T07:17:42.897538+00:00",
+          "http_status": 403,
+          "sha256": "01843c645c29b2d4242b666dc85320d5d09ba68eaff37d6b1b814d7908aaf544",
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "chiayi-city": {
+      "url": "https://www.chiayi.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:43.929000+00:00",
+      "status": "pending",
+      "error": "robots.txt 回傳 HTML，需人工檢查",
+      "count": 0,
+      "config_sha256": "fc92292a2b74ba8fd8a4ccbdb5a114b935a5470c4f0b91c1822685fde99332bf",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.chiayi.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:43.929049+00:00",
+          "http_status": 302,
+          "sha256": "fe5332636e6ba3e5cc0248161032287fcc70e91c6ae6845de26e56f224868245",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.chiayi.gov.tw/Default.aspx",
+          "checked_at": "2026-11-10T07:17:45.537560+00:00",
+          "http_status": 200,
+          "sha256": "1436810fc61d89bcded6058e257112c0633fe7e535c3b626064c12bf6b9e3c8c",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "hsinchu-county": {
+      "url": "https://www.hsinchu.gov.tw/News.aspx?n=2390&sms=10056",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:45.346917+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "ce93f6a6af35e59919353a23a6094fe5358c2a3e8710e3827d5729d1dbd6001a",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.hsinchu.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:45.346977+00:00",
+          "http_status": 404,
+          "sha256": "eab09f82e87641fb3e8c72b6c9e061f11684c7d8345925aad1fd7de4c05f87ab",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.hsinchu.gov.tw/News.aspx?n=2390&sms=10056",
+          "checked_at": "2026-11-10T07:17:46.764420+00:00",
+          "http_status": 200,
+          "sha256": "e673aed0b8ce11819041743d3a3a26ad75958fb6ac06fb3c0b827dd46fc6469a",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "miaoli": {
+      "url": "https://www.miaoli.gov.tw/News.aspx?n=287&sms=9464",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:45.544034+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "d3c795a6e4a9ed47696977b25b68dcd7d4e5ca29d64b1b1a61cf958daa5c0679",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.miaoli.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:45.544081+00:00",
+          "http_status": 404,
+          "sha256": "54e55df8d2192f72dc45d74de3a4d6e59c1c2365036ec754b096889dc15374e5",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.miaoli.gov.tw/News.aspx?n=287&sms=9464",
+          "checked_at": "2026-11-10T07:17:47.160144+00:00",
+          "http_status": 200,
+          "sha256": "7bcf611e6c059f5bd59011f66468d4ea3496e3aee876c17625c71bffae81fdf7",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "changhua": {
+      "url": "https://www.chcg.gov.tw/ch2/rssnews1.aspx",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:47.749506+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "d1c893a74d07d9b8e98784ad0d5e79c6b80deb27796b0e93ee157b4dbbeb0258",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.chcg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:47.749558+00:00",
+          "http_status": 200,
+          "sha256": "255b2aee15a8253bc02f9e1e2cb32c6255c435ccfcaec083d4696fd90f479568",
+          "content_type": "text/plain"
+        },
+        {
+          "url": "https://www.chcg.gov.tw/ch2/rssnews1.aspx",
+          "checked_at": "2026-11-10T07:17:49.440250+00:00",
+          "http_status": 200,
+          "sha256": "ad9db7650e20abb702db8004718a389048d612aa4027b69866389abfc77efb4c",
+          "content_type": "text/xml; charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "nantou": {
+      "url": "https://www.nantou.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:49.220419+00:00",
+      "status": "pending",
+      "error": "robots.txt 回傳 HTML，需人工檢查",
+      "count": 0,
+      "config_sha256": "7396e038d85b6cd175396ea9f09fc2f2fb3520685fb2f60158208d4010f7bb39",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.nantou.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:49.220469+00:00",
+          "http_status": 302,
+          "sha256": "6e3cdd615c37dd3938368a9f3e225073fd7bd1f19f5422ab862a59b944731206",
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.nantou.gov.tw/big5/index.php",
+          "checked_at": "2026-11-10T07:17:52.932079+00:00",
+          "http_status": 200,
+          "sha256": "b2393b5820c729012a142f056d824bab280c17a19871a3f37a2f6c27e53117c5",
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "yunlin": {
+      "url": "https://www.yunlin.gov.tw/News.aspx?n=1400&sms=9733",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:50.000858+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "a7818c9355f239ece9cee9e394a94402367277753f2347c802f49373b91ff400",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.yunlin.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:50.000913+00:00",
+          "http_status": 404,
+          "sha256": "798eb8d059767fb91573432be3c40d50309f34d37c00d8b5e04f23d200b7312a",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.yunlin.gov.tw/News.aspx?n=1400&sms=9733",
+          "checked_at": "2026-11-10T07:17:51.501620+00:00",
+          "http_status": 200,
+          "sha256": "dca4046e59947e8e50814b0495633c177e417931a2395dba54565b7e2e31d7e3",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "chiayi-county": {
+      "url": "https://www.cyhg.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:50.621150+00:00",
+      "status": "failed",
+      "error": "HTTP 503: retries exhausted",
+      "count": 0,
+      "config_sha256": "3848382ba7ede8a0956f2dee295c4313c6ba84cb5ddf5a7ab44d3a198675ce93",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.cyhg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:50.621202+00:00",
+          "error": "HTTP 503: retries exhausted"
+        }
+      ],
+      "detail_errors": []
+    },
+    "pingtung": {
+      "url": "https://www.pthg.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:51.059413+00:00",
+      "status": "failed",
+      "error": "HTTP 503: retries exhausted",
+      "count": 0,
+      "config_sha256": "8cc5bc7d323fe1711a2a5a3bc8e9e91b232621eadca4f16a1f2f5fa70943fdcd",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.pthg.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:51.059465+00:00",
+          "error": "HTTP 503: retries exhausted"
+        }
+      ],
+      "detail_errors": []
+    },
+    "yilan": {
+      "url": "https://www.e-land.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:51.806534+00:00",
+      "status": "failed",
+      "error": "robots.txt 重新導向缺少 Location",
+      "count": 0,
+      "config_sha256": "ffac2ea7e94ecff271c8cbebfbd4cd710c38644462026d31d8ec3850db32d330",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.e-land.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:51.806645+00:00",
+          "http_status": 301,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html"
+        }
+      ],
+      "detail_errors": []
+    },
+    "hualien": {
+      "url": "https://www.hl.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:53.968449+00:00",
+      "status": "failed",
+      "error": "HTTP 500: retries exhausted",
+      "count": 0,
+      "config_sha256": "96789f27566586281db6edb993cbbbfbc1f61798d6d5d1e612504f4a0d611e9a",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.hl.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:53.968501+00:00",
+          "error": "HTTP 500: retries exhausted"
+        }
+      ],
+      "detail_errors": []
+    },
+    "taitung": {
+      "url": "https://www.taitung.gov.tw/News.aspx?n=15377&sms=12663",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:55.475240+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "c39b70e888d01a63b559c8ca7d471b6e54887c7e4700bb42eeda71de4c6e240b",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.taitung.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:55.475305+00:00",
+          "http_status": 404,
+          "sha256": "234f5e920d754480121ea7398f288179811b36d8c4734574385b9c8b996c72e9",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.taitung.gov.tw/News.aspx?n=15377&sms=12663",
+          "checked_at": "2026-11-10T07:17:56.771856+00:00",
+          "http_status": 200,
+          "sha256": "7b5910764e5a5c04503321c788acd03aee73c904d22bf2ab4a8a0be0273f3e26",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "penghu": {
+      "url": "https://www.penghu.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:55.625955+00:00",
+      "status": "pending",
+      "error": "robots.txt 回傳 HTML，需人工檢查",
+      "count": 0,
+      "config_sha256": "772cea00ce59fbc42203ed20faee7cee16ee2324465750d4b74b0fa20db4e7d2",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.penghu.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:55.626025+00:00",
+          "http_status": 302,
+          "sha256": "a06a43a1a1d077fc561d258449b996f95037f20a15d9e818d6a0abb398e2ad35",
+          "content_type": "text/html; charset=iso-8859-1"
+        },
+        {
+          "url": "https://www.penghu.gov.tw",
+          "checked_at": "2026-11-10T07:17:57.137785+00:00",
+          "http_status": 302,
+          "sha256": "abe53de103bf9e09991ba62a290b99a1161189e7a6d3db92e95df9e376b3e6f6",
+          "content_type": "text/html; charset=UTF-8"
+        },
+        {
+          "url": "https://www.penghu.gov.tw/ch/index.jsp",
+          "checked_at": "2026-11-10T07:17:59.019053+00:00",
+          "http_status": 200,
+          "sha256": "d93b8da47e92f947173a61e25a37471681789a210ce99f26bd369394dd726969",
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "kinmen": {
+      "url": "https://www.kinmen.gov.tw/cp.aspx?n=2598759C833BBB75",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:56.236683+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "c8d75d690c0ef78c29ed13fde7e7cc0bd3cc5bc51e2de932161bbf916628faed",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.kinmen.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:56.236734+00:00",
+          "http_status": 404,
+          "sha256": "ec40a7c70cef3ea08541c5e11b4bd76e3054a0f683766c8628d3ed97a4289106",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.kinmen.gov.tw/cp.aspx?n=2598759C833BBB75",
+          "checked_at": "2026-11-10T07:17:58.022629+00:00",
+          "http_status": 200,
+          "sha256": "c5909cbf4c59b14b53ce51515eb728aa8504d9278c5c3314badbc5eeeb319f0c",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "lienchiang": {
+      "url": "https://www.matsu.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:17:56.940223+00:00",
+      "status": "pending",
+      "error": "proxy CONNECT 403: destination denied",
+      "count": 0,
+      "config_sha256": "89bf9efe8b885a7bd901013f5f2a7b885d01a83370074ba85bd4625b2bcb1fad",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.matsu.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:17:56.940287+00:00",
+          "error": "proxy CONNECT 403: destination denied"
+        }
+      ],
+      "detail_errors": []
+    },
+    "adi-events": {
+      "url": "https://moda.gov.tw/ADI/news/events/772",
+      "method": "html",
+      "checked_at": "2026-11-10T07:32:56.999828+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 1,
+      "config_sha256": "9fe196460dd247921607e474597a14a9c09fcd935beee6e5a985eb12db20d066",
+      "terms_url": "https://moda.gov.tw/announcement/publicdeclare/951",
+      "events": [
+        {
+          "url": "https://moda.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:32:57.000144+00:00",
+          "http_status": 404,
+          "sha256": "19e45d156169dc34cb67aa3b2397a776039ab4b3d4da28f9b0b4780d1da20a3a",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://moda.gov.tw/ADI/news/events/772",
+          "checked_at": "2026-11-10T07:32:57.280601+00:00",
+          "http_status": 200,
+          "sha256": "98e535e667ed382ab6c31fa2ba3cda9a48e95a7586cd06a02adfbf827d9d6ee7",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://moda.gov.tw/announcement/publicdeclare/951",
+          "checked_at": "2026-11-10T07:33:00.299542+00:00",
+          "http_status": 200,
+          "sha256": "a95474b0d3668c1f9ed7fdf92ce72bf250f640e229f8d9e93708014f0c2dbe53",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://moda.gov.tw/ADI/news/events/21170",
+          "checked_at": "2026-11-10T07:33:03.260097+00:00",
+          "http_status": 200,
+          "sha256": "0701667c35409e57fecdd3de7d418fcec18efd595d230b9149c84b0023490090",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "energy": {
+      "url": "https://www.moeaea.gov.tw/ECW/populace/news/NewsRSSdetail.aspx?Kind=3",
+      "method": "rss",
+      "checked_at": "2026-11-10T07:25:05.323069+00:00",
+      "status": "verified",
+      "error": null,
+      "count": 14,
+      "config_sha256": "e8f702cb72e2b16614de0b442137af87a61c44ed9b5347bebf6a7da6a6cc7463",
+      "terms_url": "https://www.moeaea.gov.tw/ECW/populace/content/ContentFoot.aspx?menu_id=2900",
+      "events": [
+        {
+          "url": "https://www.moeaea.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:25:05.323191+00:00",
+          "http_status": 404,
+          "sha256": "eab09f82e87641fb3e8c72b6c9e061f11684c7d8345925aad1fd7de4c05f87ab",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw/ECW/populace/news/NewsRSSdetail.aspx?Kind=3",
+          "checked_at": "2026-11-10T07:25:05.742722+00:00",
+          "http_status": 200,
+          "sha256": "3f7337df3aba024560f9d43e3f7b672b414e7e45b0f24fc89cdd2ae70d13c2ea",
+          "content_type": "text/xml"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw/ECW/populace/content/ContentFoot.aspx?menu_id=2900",
+          "checked_at": "2026-11-10T07:25:14.585624+00:00",
+          "http_status": 200,
+          "sha256": "960c8df68e364e46821bd87120f24f38b8da18d645567b036ccb40ca51354887",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/robots.txt",
+          "checked_at": "2026-11-10T07:25:15.018063+00:00",
+          "http_status": 404,
+          "sha256": "eab09f82e87641fb3e8c72b6c9e061f11684c7d8345925aad1fd7de4c05f87ab",
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34635",
+          "checked_at": "2026-11-10T07:25:15.230727+00:00",
+          "http_status": 200,
+          "sha256": "66d241a80db73616187e32c92d925527baa00344a50a812041ca6238ad038155",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34634",
+          "checked_at": "2026-11-10T07:25:18.631641+00:00",
+          "http_status": 200,
+          "sha256": "35269bf57d1e31de96d855d4390ffab59fb8a1c22fabcbed5949e74bd5e66a14",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34614",
+          "checked_at": "2026-11-10T07:25:24.406028+00:00",
+          "http_status": 200,
+          "sha256": "dfbdfb62bf6afe1955c30a3a681c97ad2be3fe171663c1a0914eab5204c38dd7",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34581",
+          "checked_at": "2026-11-10T07:25:24.852817+00:00",
+          "http_status": 200,
+          "sha256": "4799cd0b29d3e2592ff0014b45c12de3939c4e75b937e45a06974ff062c96afa",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34580",
+          "checked_at": "2026-11-10T07:25:27.903800+00:00",
+          "http_status": 200,
+          "sha256": "95155455dc73acb0aa65e644c0d1c543ba54f7fb950bf925acb0ada6e9d1789d",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34547",
+          "checked_at": "2026-11-10T07:25:30.869304+00:00",
+          "http_status": 200,
+          "sha256": "68b3b3d161dd0ffeb59b79f59dac4208b04f71e764c50ccef8a9a87877e8dbef",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34517",
+          "checked_at": "2026-11-10T07:25:36.948145+00:00",
+          "http_status": 200,
+          "sha256": "1cdfbc4305c50b6bda28cc5717a1d4ce01f315e008bdf059c60b44c2c1328cbb",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34421",
+          "checked_at": "2026-11-10T07:25:40.970808+00:00",
+          "http_status": 200,
+          "sha256": "a9b0a07054dde4fb45e73a70506eefa68115fa7880dd72daa5f71ec4186eec75",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34327",
+          "checked_at": "2026-11-10T07:25:41.631304+00:00",
+          "http_status": 200,
+          "sha256": "c3bdecc8c03b31c0e57ec8d0947d517c5abf86372e0b97d9cc73a8c878fdd7b0",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34251",
+          "checked_at": "2026-11-10T07:25:46.983680+00:00",
+          "http_status": 200,
+          "sha256": "533087fe85797dab00106923a134dd29fc26dcba1b65aba8abafb9e17843f6aa",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34120",
+          "checked_at": "2026-11-10T07:25:47.445822+00:00",
+          "http_status": 200,
+          "sha256": "c08413f38c4f275dd36e3980f0f6797074e2365daa64dcdcd33fd94f7f0582d9",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34116",
+          "checked_at": "2026-11-10T07:25:50.433577+00:00",
+          "http_status": 200,
+          "sha256": "3740ae61984b73f13ef47f9a44d12ec86fa01c40d37a86db01b5841352b588aa",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=34044",
+          "checked_at": "2026-11-10T07:25:55.533216+00:00",
+          "http_status": 200,
+          "sha256": "846409c8af1a547cbe3970ace74d3ce6960dae06354e3d2ebbb5da23edf41e7b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=16612",
+          "checked_at": "2026-11-10T07:25:59.494844+00:00",
+          "http_status": 302,
+          "sha256": "8f3396fad7c965c8e186a3a14035d9aef9bfac9aaab5a966b2c93a943813ec5b",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.moeaea.gov.tw:443/ecw/htmNotFoundPage.htm?aspxerrorpath=/ECW/main/news/Board.aspx",
+          "checked_at": "2026-11-10T07:25:59.767609+00:00",
+          "http_status": 200,
+          "sha256": "001aaa1ef966ebd5e8be84bf5abb2153bd024a56ca0cb097645b50f12b0424b8",
+          "content_type": "text/html"
+        }
+      ],
+      "detail_errors": [
+        {
+          "url": "https://www.moeaea.gov.tw:443/ECW/populace/news/Board.aspx?kind=3&menu_id=57&news_id=16612",
+          "error": "找不到已設定官方詳情節點；需重新審查 selector"
+        }
+      ]
+    },
+    "moenv": {
+      "url": "https://www.moenv.gov.tw/information-service/convenience-services/subsidy/moenv/3129.html",
+      "method": "html",
+      "checked_at": "2026-11-10T07:25:27.625786+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "3995abe9fa7e3ea562cb1c6e31a95ba069984068737fe2494c14366f6bcdcabb",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.moenv.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:25:27.625909+00:00",
+          "http_status": 200,
+          "sha256": "9beb8412b56bb8969cd77db4fa723d3ae3b71044ff09214b06e667f86285832e",
+          "content_type": "text/plain"
+        },
+        {
+          "url": "https://www.moenv.gov.tw/information-service/convenience-services/subsidy/moenv/3129.html",
+          "checked_at": "2026-11-10T07:25:28.250313+00:00",
+          "http_status": 200,
+          "sha256": "eac93e2c6160d3a63b60d00042cee23d911cb968b8b77b80309ca956c6eb26b6",
+          "content_type": "text/html"
+        }
+      ],
+      "detail_errors": []
+    },
+    "mol": {
+      "url": "https://www.mol.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:18:01.413945+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "b6d3fe4ea951d00db333e698187b613aa6f670c1f8b6ebb7cc4347e67f09eae1",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.mol.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:18:01.413993+00:00",
+          "http_status": 200,
+          "sha256": "0597fd1903e834fa138b555915e8c849da9b8e68ad4d07fe7534da0b5c3b2780",
+          "content_type": "text/plain"
+        },
+        {
+          "url": "https://www.mol.gov.tw/",
+          "checked_at": "2026-11-10T07:18:02.453085+00:00",
+          "http_status": 200,
+          "sha256": "8433b1921a20bea1f20e8bd8116c32cae187203aaac8072e9f5d8254367b6a2e",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "moa": {
+      "url": "https://www.moa.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:18:02.469849+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "a464c7052c250fc597b99800f248e8118a41b64d0871c765cb7bf461a63240f5",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.moa.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:18:02.469907+00:00",
+          "http_status": 200,
+          "sha256": "e671e3547ea9bd41e6a87879b70a39d784208d652e4bbd64971d6fd0f8ebe5de",
+          "content_type": "text/plain"
+        },
+        {
+          "url": "https://www.moa.gov.tw/",
+          "checked_at": "2026-11-10T07:18:03.417714+00:00",
+          "http_status": 200,
+          "sha256": "645e2a7f8a11e3c2f6f11018a474c619f66e0d496d29ff100b8b446ddb5f8692",
+          "content_type": "text/html; charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "ndc": {
+      "url": "https://www.ndc.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:18:03.069284+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "937cd908e3d3e8d1c79c0369f493cb81758c40add279fcea600de2a65d2fb3c0",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.ndc.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:18:03.069351+00:00",
+          "http_status": 404,
+          "sha256": "f609e63cb7792f891b8f8a9564a832475a855e737a6f8ab661d829d3f8040b94",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "url": "https://www.ndc.gov.tw/",
+          "checked_at": "2026-11-10T07:18:04.167880+00:00",
+          "http_status": 200,
+          "sha256": "671c2d50e9a297a345a4f066fbf7717d245ed237c0e0d5b16c5d57258eb27b46",
+          "content_type": "text/html; charset=utf-8"
+        }
+      ],
+      "detail_errors": []
+    },
+    "moea-commerce": {
+      "url": "https://www.aoc.gov.tw/",
+      "method": "html",
+      "checked_at": "2026-11-10T07:18:04.472782+00:00",
+      "status": "pending",
+      "error": "尚未完成可存取的授權條款審查或企業公告端點設定",
+      "count": 0,
+      "config_sha256": "6f4dfd0df84f3776183fc1a8aa4f2eaf54eb7c4a1633f20d5b115d3f809c2d57",
+      "terms_url": null,
+      "events": [
+        {
+          "url": "https://www.aoc.gov.tw/robots.txt",
+          "checked_at": "2026-11-10T07:18:04.473388+00:00",
+          "http_status": 200,
+          "sha256": "d12c81d50a04a1a8edd9d2e578aebfd2ddd046a1baf59b7f30dcca5d999f9d60",
+          "content_type": "text/plain; charset=utf-8"
+        },
+        {
+          "url": "https://www.aoc.gov.tw/",
+          "checked_at": "2026-11-10T07:18:05.730588+00:00",
+          "http_status": 200,
+          "sha256": "8f955927daeeb54db5803b6328647d165e01081a1babb31bcb856e96c9a8e99f",
+          "content_type": "text/html;charset=UTF-8"
+        }
+      ],
+      "detail_errors": []
+    }
+  },
+  "daily_validation": {
+    "pre_counter_fix_live_first": {
+      "started_at": "2026-11-10T07:19:51.773815+00:00",
+      "status": "success",
+      "inserted": 43,
+      "updated": 0,
+      "unchanged": 0,
+      "failed_sources": [],
+      "sources": {
+        "moea-notices-rss": {
+          "inserted": 27,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "sme-business": {
+          "inserted": 3,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "ida": {
+          "inserted": 6,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "doit": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "nstc": {
+          "inserted": 4,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "taipei": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "adi-events": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "published": true,
+      "announcement_count": 43,
+      "duration_seconds": 171.059,
+      "completed_at": "2026-11-10T07:22:42.833224+00:00",
+      "network_mode": "live"
+    },
+    "pre_counter_fix_live_second": {
+      "started_at": "2026-11-10T07:26:58.961257+00:00",
+      "status": "success",
+      "inserted": 0,
+      "updated": 4,
+      "unchanged": 39,
+      "failed_sources": [],
+      "sources": {
+        "moea-notices-rss": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 27
+        },
+        "sme-business": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 3
+        },
+        "ida": {
+          "inserted": 0,
+          "updated": 4,
+          "unchanged": 2
+        },
+        "doit": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "nstc": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 4
+        },
+        "taipei": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 2
+        },
+        "adi-events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 1
+        }
+      },
+      "published": true,
+      "announcement_count": 43,
+      "duration_seconds": 174.384,
+      "completed_at": "2026-11-10T07:29:53.345373+00:00",
+      "network_mode": "live"
+    },
+    "final_parser_recorded_first": {
+      "started_at": "2026-11-10T07:30:50.903035+00:00",
+      "status": "success",
+      "inserted": 43,
+      "updated": 0,
+      "unchanged": 0,
+      "failed_sources": [],
+      "sources": {
+        "moea-notices-rss": {
+          "inserted": 27,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "sme-business": {
+          "inserted": 3,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "ida": {
+          "inserted": 6,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "doit": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "nstc": {
+          "inserted": 4,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "taipei": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "adi-events": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "published": true,
+      "announcement_count": 43,
+      "duration_seconds": 2.214,
+      "completed_at": "2026-11-10T07:30:53.117072+00:00",
+      "network_mode": "recorded-response-replay"
+    },
+    "final_parser_recorded_second": {
+      "started_at": "2026-11-10T07:30:53.117627+00:00",
+      "status": "success",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 43,
+      "failed_sources": [],
+      "sources": {
+        "moea-notices-rss": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 27
+        },
+        "sme-business": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 3
+        },
+        "ida": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 6
+        },
+        "doit": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "nstc": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 4
+        },
+        "taipei": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 2
+        },
+        "adi-events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 1
+        }
+      },
+      "published": true,
+      "announcement_count": 43,
+      "duration_seconds": 1.935,
+      "completed_at": "2026-11-10T07:30:55.053057+00:00",
+      "network_mode": "recorded-response-replay"
+    },
+    "final_live": {
+      "started_at": "2026-11-10T07:30:13.362483+00:00",
+      "status": "success",
+      "inserted": 43,
+      "updated": 0,
+      "unchanged": 0,
+      "failed_sources": [],
+      "sources": {
+        "moea-notices-rss": {
+          "inserted": 27,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "sme-business": {
+          "inserted": 3,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "ida": {
+          "inserted": 6,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "doit": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "nstc": {
+          "inserted": 4,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "taipei": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "adi-events": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "published": true,
+      "announcement_count": 43,
+      "duration_seconds": 172.834,
+      "completed_at": "2026-11-10T07:33:06.196229+00:00",
+      "network_mode": "live",
+      "nonnull_fields": {
+        "title": 43,
+        "agency": 43,
+        "announced_on": 39,
+        "deadline": 16,
+        "amount": 5,
+        "eligibility": 15,
+        "official_url": 43
+      },
+      "classifications": {
+        "待人工確認": 14,
+        "企業補助計畫": 17,
+        "非補助公告": 12
+      },
+      "coverage": {
+        "central": {
+          "total": 12,
+          "enabled": 6,
+          "verified": 6
+        },
+        "local": {
+          "total": 22,
+          "enabled": 1,
+          "verified": 1
+        }
+      },
+      "integrity_check": "ok",
+      "announcement_versions": 43,
+      "excel_rows": 43,
+      "streamlit_actual_snapshot": "passed"
+    }
+  },
+  "automated_tests": {
+    "passed": 163,
+    "baseline_tests": 146,
+    "new_tests": 17,
+    "network": "disabled by test suite"
+  },
+  "base_sync": {
+    "remote_main": "fd7f3b5",
+    "phase_seven_public_workflow_preserved": true
+  },
+  "github_validation": {
+    "run": {
+      "conclusion": "success",
+      "createdAt": "2026-11-10T07:36:24Z",
+      "headSha": "5f1c6fe5193a88e9af745f311a2d11a221ebb784",
+      "jobs": [
+        {
+          "completedAt": "2026-11-10T07:39:44Z",
+          "conclusion": "success",
+          "databaseId": 129695998522,
+          "name": "collect",
+          "startedAt": "2026-11-10T07:36:29Z",
+          "status": "completed",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/setup-python@v5",
+              "number": 3,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run pip install -r requirements.txt",
+              "number": 4,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Restore data branch or explicitly initialize",
+              "number": 5,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Collect, classify and export",
+              "number": 6,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Validate complete snapshot and preserve historical IDs",
+              "number": 7,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Upload validated candidate",
+              "number": 8,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Show report",
+              "number": 9,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@v4",
+              "number": 10,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Post Run actions/setup-python@v5",
+              "number": 19,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 20,
+              "status": "completed"
+            },
+            {
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 21,
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704/job/129695998522"
+        },
+        {
+          "completedAt": "2026-11-10T07:39:44Z",
+          "conclusion": "skipped",
+          "databaseId": 129697224241,
+          "name": "publish",
+          "startedAt": "2026-11-10T07:39:45Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704/job/129697224241"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-11-10T07:39:45Z",
+      "url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776462704"
+    },
+    "report_summary_from_logs": {
+      "inserted": 1,
+      "updated": 38,
+      "unchanged": 4,
+      "failed_sources_count": 0,
+      "duration_seconds": 172.435,
+      "announcement_count": 43
+    },
+    "source_log_counts": {
+      "moea-notices-rss": 27,
+      "sme-business": 3,
+      "ida": 6,
+      "doit": 0,
+      "nstc": 4,
+      "taipei": 2,
+      "adi-events": 1
+    },
+    "production_refs_before": [
+      {
+        "ref": "refs/heads/grant-data",
+        "sha": "0eb55b16241c7062d4e1b35f04c7c0cb9831ed66"
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "fd7f3b57f9dd120a2c6c800e3102812cc52ddd04"
+      }
+    ],
+    "production_refs_after": [
+      {
+        "ref": "refs/heads/grant-data",
+        "sha": "0eb55b16241c7062d4e1b35f04c7c0cb9831ed66"
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "fd7f3b57f9dd120a2c6c800e3102812cc52ddd04"
+      }
+    ],
+    "test_run_url": "https://github.com/ct19051915/taiwan-grant-watch/actions/runs/42776596707",
+    "tests_passed": 163,
+    "artifact_note": "Upload steps succeeded; local artifact download returned HTTP 403, so counts above were extracted from public workflow logs, not an artifact download."
+  }
+}

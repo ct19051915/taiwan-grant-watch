@@ -44,7 +44,8 @@ class RssExtractor:
             else:
                 title, link = item.findtext('title', ''), item.findtext('link')
                 external_id = item.findtext('guid')
-                published, content = item.findtext('pubDate'), item.findtext('description')
+                published = item.findtext('pubDate') or item.findtext('{http://purl.org/dc/elements/1.1/}date')
+                content = item.findtext('{http://purl.org/rss/1.0/modules/content/}encoded') or item.findtext('description')
             record = announcement(source, title.strip(), urljoin(source['url'], link) if link else None,
                                   external_id=external_id, announced_on=published,
                                   content=BeautifulSoup(content, 'html.parser').get_text(' ', strip=True) if content else None)
@@ -72,13 +73,20 @@ class HtmlExtractor:
             for field in ('announced_on', 'deadline', 'amount', 'eligibility', 'category', 'content'):
                 selector = config.get(field + '_selector')
                 node = row.select_one(selector) if selector else None
-                fields[field] = node.get_text(' ', strip=True) if node else None
+                attribute = config.get(field + '_attribute')
+                fields[field] = (node.get(attribute) if attribute else node.get_text(' ', strip=True)) if node else None
             title_node = row.select_one(config['title_selector']) if config.get('title_selector') else link
             if title_node is None:
                 raise FetchError('公告列缺少設定的標題節點')
             title = (title_node.get(config['title_attribute']) if config.get('title_attribute')
                      else title_node.get_text(' ', strip=True))
-            record = announcement(source, title, urljoin(source['url'], link['href']), **fields)
+            href = link['href']
+            if config.get('link_template'):
+                match = re.fullmatch(config['link_pattern'], href)
+                if match is None:
+                    raise FetchError('公告永久連結識別碼格式改變')
+                href = config['link_template'].format(**match.groupdict())
+            record = announcement(source, title, urljoin(source['url'], href), **fields)
             if record:
                 result.append(record)
         return result

@@ -63,10 +63,18 @@ def read_snapshot(path, as_of=None):
         sources = rows('sources', ('id',))
         for source in sources:
             source['config'] = object_json(source.get('config'))
+            source['announcement_count'] = db.execute(
+                'SELECT count(DISTINCT announcement_id) FROM source_items WHERE source_id=?',
+                (source['id'],)).fetchone()[0] if 'source_items' in tables else 0
         results = []
         for original in originals:
             row = dict(original)
-            candidate = quality.get(row['id']) or states.get(row['id']) or {}
+            # 詳情更新使舊品質審查失效時，採用同一內容雜湊的最新每日評估。
+            # 過期審查不得遮蔽已重新計算的申請狀態與主題。
+            candidate = next((entry for entry in (quality.get(row['id']), states.get(row['id']))
+                              if entry and entry.get('source_content_hash') == row.get('content_hash')
+                              and (not entry.get('source_official_url')
+                                   or entry['source_official_url'] == row.get('official_url'))), {})
             assessment = object_json(candidate.get('assessment_json'))
             fresh = bool(row.get('content_hash') and candidate.get('source_content_hash') == row['content_hash'])
             if candidate.get('source_official_url') and candidate['source_official_url'] != row.get('official_url'):
@@ -85,7 +93,7 @@ def read_snapshot(path, as_of=None):
                 warnings.append('部分分類資料異常，已降級為待確認。')
             row.update(classification=assessment.get('classification') or '待人工確認',
                        application_status=status['status'], status_reason=status['reason'],
-                       assessment=assessment, document=documents.get(row.get('official_url'), {}),
+                       topics=assessment.get('topics', []), assessment=assessment, document=documents.get(row.get('official_url'), {}),
                        government_label={'central': '中央政府', 'local': '地方政府'}.get(row.get('government_level'), '待確認'),
                        industry=row.get('category') if row.get('category') not in ('企業補助計畫', '非補助公告', '待人工確認') else None)
             results.append(row)
