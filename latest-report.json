@@ -1,13 +1,13 @@
 {
-  "started_at": "2026-11-10T06:56:35.526315+00:00",
+  "started_at": "2026-11-11T04:29:13.229369+00:00",
   "status": "success",
-  "inserted": 0,
+  "inserted": 1,
   "updated": 0,
   "unchanged": 42,
   "failed_sources": [],
   "sources": {
     "moea-notices-rss": {
-      "inserted": 0,
+      "inserted": 1,
       "updated": 0,
       "unchanged": 27
     },
@@ -33,9 +33,9 @@
     }
   },
   "published": true,
-  "announcement_count": 42,
-  "database_sha256": "283082a4e0f624f8f60fc75bdf22ca2676e94da03a8e37e7eb1d9b1fc39e6fef",
-  "announcements_sha256": "02a42d3459be94f147217b8d029b2de645ae621e520d28c2f9777bd2a3cbd295",
-  "duration_seconds": 159.318,
-  "completed_at": "2026-11-10T06:59:14.844166+00:00"
+  "announcement_count": 43,
+  "database_sha256": "1ffe032828f764b0a6a33c0adde2a275b83c5b66280ca7d49634207debbe7d3f",
+  "announcements_sha256": "0bf67bcc6242fefb139573b5156dd4ce95a22b5e53f65ee736e8365d371d13af",
+  "duration_seconds": 165.444,
+  "completed_at": "2026-11-11T04:31:58.673256+00:00"
 }
